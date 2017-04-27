@@ -1,6 +1,6 @@
 'use strict';
 
-var DEBUG = process.env.NODE_ENV != "production";
+var DEBUG = process.env.NODE_ENV !== "production";
 
 var gulp = require('gulp')
   , browserify = require('browserify')
@@ -21,7 +21,7 @@ var nunjucksOptions = {
 
 var paths = {
   less: 'less/*.less',
-  js : ['js/*.js', 'js/*/*.js'],
+  js: ['js/*.js', 'js/*/*.js'],
   jsfile: 'liveblog.js',
   cssfile: 'liveblog.css',
   templates: 'templates/*.html'
@@ -46,12 +46,11 @@ function loadThemeJSON() {
   });
 }
 
-gulp.task('lint', () => {
-  return gulp.src(['js/**/*.js','!node_modules/**'])
-    .pipe(eslint({ quiet: true }))
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
+gulp.task('lint', () => gulp.src(['js/**/*.js','gulpfile.js'])
+  .pipe(eslint({ quiet: false }))
+  .pipe(eslint.format())
+  .pipe(eslint.failAfterError())
+);
 
 // Browserify.
 gulp.task('browserify', ['clean-js'], function(cb) {
@@ -68,6 +67,7 @@ gulp.task('browserify', ['clean-js'], function(cb) {
 
   // Source-mapped
   return b
+    .transform("babelify", {presets: ["es2015"]})
     .transform(nunjucksify, {
       extension: '.html',
       nameFunction: rewriteFilenames
@@ -185,7 +185,7 @@ gulp.task('watch-static', ['serve'], function() {
 
   [js, less, templates].forEach(function(el, i) {
     el.on('error', function(e) {
-      console.log(e.toString())
+      console.error(e.toString())
     });
   })
 });
