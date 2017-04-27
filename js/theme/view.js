@@ -17,7 +17,7 @@ var timelineElem = helpers.getElems("lb-posts")
 function renderTimeline(api_response) {
   var renderedPosts = [];
 
-  api_response._items.forEach(function(post) {
+  api_response._items.forEach((post) => {
     renderedPosts.push(templates.post({
       item: post
     }));
@@ -144,7 +144,7 @@ function loadEmbeds() {
  */
 function toggleSortBtn(name) {
   var sortingBtns = document.querySelectorAll('.sorting-bar__order');
-  sortingBtns.forEach(function(el) {
+  sortingBtns.forEach((el) => {
     var shouldBeActive = el.dataset.hasOwnProperty("jsOrderby_" + name);
     el.classList.toggle('sorting-bar__order--active', shouldBeActive);
   });
@@ -157,7 +157,6 @@ function toggleSortBtn(name) {
 function hideLoadMore(shouldHide) {
   loadMorePostsButton[0].classList.toggle(
     "mod--hide", shouldHide);
-  return;
 }
 
 /**

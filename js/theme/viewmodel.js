@@ -46,12 +46,12 @@ vm.getPosts = function(opts) {
     , fullPath = endpoint + qs + dbQuery;
 
   return helpers.getJSON(fullPath)
-    .then(function(posts) {
+    .then((posts) => {
       self.updateViewModel(posts, opts);
       posts.requestOpts = opts;
       return posts;
     })
-    .catch(function(err) {
+    .catch((err) => {
       console.error(err);
     });
 };
@@ -114,9 +114,7 @@ vm.updateViewModel = function(api_response, opts) {
  * @returns {string} - ISO 8601 encoded date
  */
 vm.getLatestUpdate = function(api_response) {
-  var timestamps = api_response._items.map(function(post) {
-    return new Date(post._updated);
-  });
+  var timestamps = api_response._items.map((post) => new Date(post._updated));
 
   var latest = new Date(Math.max.apply(null, timestamps));
   return latest.toISOString(); // convert timestamp to ISO
@@ -181,7 +179,7 @@ vm.getQuery = function(opts) {
 
   if (opts.highlightsOnly === true) {
     query.query.filtered.filter.and.push({
-        term: {highlight: true}
+      term: {highlight: true}
     });
   }
 
@@ -190,7 +188,7 @@ vm.getQuery = function(opts) {
   }
 
   if (opts.sort === "ascending" || opts.sort === "descending") {
-    query.query.filtered.filter.and.forEach(function(rule, index) {
+    query.query.filtered.filter.and.forEach((rule, index) => {
       if (rule.hasOwnProperty('range')) {
         query.query.filtered.filter.and.splice(index, 1);
       }
