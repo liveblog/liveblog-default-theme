@@ -11,13 +11,12 @@ var gulp = require('gulp')
   , plugins = gulpLoadPlugins()
   , path = require('path')
   , del = require('del')
-  , minimist = require('minimist')
   , eslint = require('gulp-eslint')
   , fs = require('fs');
 
 var nunjucksOptions = {
   env: require('./js/nunjucks_extensions').nunjucksEnv
-}
+};
 
 var paths = {
   less: 'less/*.less',
@@ -31,7 +30,7 @@ var paths = {
 var theme = require('./theme.json');
 
 function getThemeSettings(options) {
-  var _options = {}
+  var _options = {};
   for (var option in options) {
     _options[option.name] = option.default;
   }
@@ -47,7 +46,7 @@ function loadThemeJSON() {
 }
 
 gulp.task('lint', () => gulp.src(['js/**/*.js','gulpfile.js'])
-  .pipe(eslint({ quiet: false }))
+  .pipe(eslint({ quiet: true }))
   .pipe(eslint.format())
   .pipe(eslint.failAfterError())
 );
@@ -62,7 +61,7 @@ gulp.task('browserify', ['clean-js'], function(cb) {
 
   var rewriteFilenames = function(filename) {
     var parts = filename.split("/");
-    return parts[parts.length-1]
+    return parts[parts.length - 1];
   };
 
   // Source-mapped
@@ -125,10 +124,10 @@ gulp.task('index-inject', ['less', 'browserify'], function() {
 gulp.task('template-inject', ['less', 'browserify'], function() {
   var themeSettings = getThemeSettings(theme.options);
 
-  var _api_response = {};
-  var sources = gulp.src(['./dist/*.js', './dist/*.css'], {
-    read: false // We're only after the file paths
-  });
+  //var _api_response = {};
+  //var sources = gulp.src(['./dist/*.js', './dist/*.css'], {
+  //  read: false // We're only after the file paths
+  //});
 
   return gulp.src('./templates/template.html')
     .pipe(plugins.nunjucks.compile({
@@ -185,19 +184,19 @@ gulp.task('watch-static', ['serve'], function() {
 
   [js, less, templates].forEach(function(el, i) {
     el.on('error', function(e) {
-      console.error(e.toString())
+      console.error(e.toString());
     });
-  })
+  });
 });
 
 // Clean CSS
 gulp.task('clean-css', function() {
-  return del(['dist/*.css'])
+  return del(['dist/*.css']);
 });
 
 // Clean JS
 gulp.task('clean-js', function() {
-  return del(['dist/*.js'])
+  return del(['dist/*.js']);
 });
 
 // Default build for production

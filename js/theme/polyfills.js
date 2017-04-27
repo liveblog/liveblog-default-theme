@@ -21,8 +21,13 @@ function enableCustomEvent() {
 }
 
 function enableClassList() {
-  if (("classList" in document.documentElement)) return;
-  if (!Object.defineProperty || typeof HTMLElement === 'undefined') return;
+  if (("classList" in document.documentElement)) {
+    return;
+  }
+
+  if (!Object.defineProperty || typeof HTMLElement === 'undefined') {
+    return;
+  }
 
   Object.defineProperty(HTMLElement.prototype, 'classList', {
     get: function() {
@@ -34,7 +39,7 @@ function enableClassList() {
 
           fn(classes, index, value);
           self.className = classes.join(" ");
-        }
+        };
       }
 
       var ret = {
@@ -74,4 +79,4 @@ module.exports = {
   events: enableCustomEvent,
   classList: enableClassList,
   promise: Promise
-}
+};

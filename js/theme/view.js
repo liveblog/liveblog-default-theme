@@ -3,13 +3,11 @@
  */
 
 'use strict';
-var helpers = require("./helpers")
-var templates = require('./templates')
+var helpers = require("./helpers");
+var templates = require('./templates');
 
 var timelineElem = helpers.getElems("lb-posts")
   , loadMorePostsButton = helpers.getElems("load-more-posts");
-
-var settings = LB.settings;
 
 /**
  * Replace the current timeline unconditionally.
@@ -22,7 +20,7 @@ function renderTimeline(api_response) {
   api_response._items.forEach(function(post) {
     renderedPosts.push(templates.post({
       item: post
-    }))
+    }));
   });
 
   timelineElem[0].innerHTML = renderedPosts.join("");
@@ -52,24 +50,24 @@ function renderPosts(api_response) {
     });
 
     if (posts.operation === "update") {
-      updatePost(renderedPost)
+      updatePost(renderedPost);
       return; // early
     }
 
-    renderedPosts.push(renderedPost) // create operation
+    renderedPosts.push(renderedPost); // create operation
   };
 
   if (!renderedPosts.length) {
-    return // early
+    return; // early
   }
   
   if (api_response.requestOpts.sort !== "ascending") {
-    renderedPosts.reverse()
+    renderedPosts.reverse();
   }
 
   addPosts(renderedPosts, { // if creates
     position: api_response.requestOpts.fromDate ? "top" : "bottom"
-  })
+  });
 
   loadEmbeds();
 };
@@ -92,7 +90,7 @@ function addPosts(posts, opts) {
         : "beforeend"; // insertAdjacentHTML API => before end of node
 
   for (var i = posts.length - 1; i >= 0; i--) {
-    postsHTML += posts[i]
+    postsHTML += posts[i];
   };
 
   timelineElem[0].insertAdjacentHTML(position, postsHTML);
@@ -120,9 +118,9 @@ function updatePost(postId, renderedPost) {
  * Show new posts loaded via XHR
  */
 function displayNewPosts() {
-  var newPosts = helpers.getElems("lb-post-new")
+  var newPosts = helpers.getElems("lb-post-new");
   for (var i = newPosts.length - 1; i >= 0; i--) {
-    newPosts[i].classList.remove("lb-post-new")
+    newPosts[i].classList.remove("lb-post-new");
   }
 };
 
@@ -131,8 +129,13 @@ function displayNewPosts() {
  * Todo: Make required scripts available on subsequent loads
  */
 function loadEmbeds() {
-  if (window.instgrm) instgrm.Embeds.process()
-  if (window.twttr) twttr.widgets.load()
+  if (window.instgrm) {
+    instgrm.Embeds.process();
+  }
+
+  if (window.twttr) {
+    twttr.widgets.load();
+  }
 };
 
 /**
@@ -142,7 +145,7 @@ function loadEmbeds() {
 function toggleSortBtn(name) {
   var sortingBtns = document.querySelectorAll('.sorting-bar__order');
   sortingBtns.forEach(function(el) {
-    var shouldBeActive = el.dataset.hasOwnProperty("jsOrderby_" + name)
+    var shouldBeActive = el.dataset.hasOwnProperty("jsOrderby_" + name);
     el.classList.toggle('sorting-bar__order--active', shouldBeActive);
   });
 };
@@ -153,7 +156,7 @@ function toggleSortBtn(name) {
  */
 function hideLoadMore(shouldHide) {
   loadMorePostsButton[0].classList.toggle(
-    "mod--hide", shouldHide)
+    "mod--hide", shouldHide);
   return;
 };
 
@@ -168,7 +171,7 @@ function updateTimestamps() {
       , timestamp = elem.dataset.jsTimestamp;
     elem.textContent = helpers.convertTimestamp(timestamp);
   }
-  return null
+  return null;
 };
 
 module.exports = {
@@ -181,4 +184,4 @@ module.exports = {
   updateTimestamps: updateTimestamps,
   hideLoadMore: hideLoadMore,
   toggleSortBtn: toggleSortBtn
-}
+};
