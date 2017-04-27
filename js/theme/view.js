@@ -25,7 +25,7 @@ function renderTimeline(api_response) {
 
   timelineElem[0].innerHTML = renderedPosts.join("");
   loadEmbeds();
-};
+}
 
 /**
  * Render posts currently in pipeline to template.
@@ -43,7 +43,7 @@ function renderPosts(api_response) {
     if (posts.operation === "delete") {
       deletePost(post._id);
       return; // early
-    };
+    }
 
     var renderedPost = templates.post({
       item: post
@@ -55,7 +55,7 @@ function renderPosts(api_response) {
     }
 
     renderedPosts.push(renderedPost); // create operation
-  };
+  }
 
   if (!renderedPosts.length) {
     return; // early
@@ -70,7 +70,7 @@ function renderPosts(api_response) {
   });
 
   loadEmbeds();
-};
+}
 
 /**
  * Add post nodes to DOM, do so regardless of settings.autoApplyUpdates,
@@ -91,10 +91,10 @@ function addPosts(posts, opts) {
 
   for (var i = posts.length - 1; i >= 0; i--) {
     postsHTML += posts[i];
-  };
+  }
 
   timelineElem[0].insertAdjacentHTML(position, postsHTML);
-};
+}
 
 /**
  * Delete post <article> DOM node by data attribute.
@@ -103,7 +103,7 @@ function addPosts(posts, opts) {
 function deletePost(postId) {
   var elem = helpers.getElems('data-js-post-id=\"' + postId + '\"');
   elem[0].remove();
-};
+}
 
 /**
  * Delete post <article> DOM node by data attribute.
@@ -112,7 +112,7 @@ function deletePost(postId) {
 function updatePost(postId, renderedPost) {
   var elem = helpers.getElems('data-js-post-id=\"' + postId + '\"');
   elem[0].innerHTML = renderedPost;
-};
+}
 
 /**
  * Show new posts loaded via XHR
@@ -122,7 +122,7 @@ function displayNewPosts() {
   for (var i = newPosts.length - 1; i >= 0; i--) {
     newPosts[i].classList.remove("lb-post-new");
   }
-};
+}
 
 /**
  * Trigger embed provider unpacking
@@ -136,7 +136,7 @@ function loadEmbeds() {
   if (window.twttr) {
     twttr.widgets.load();
   }
-};
+}
 
 /**
  * Set sorting order button of class @name to active.
@@ -148,7 +148,7 @@ function toggleSortBtn(name) {
     var shouldBeActive = el.dataset.hasOwnProperty("jsOrderby_" + name);
     el.classList.toggle('sorting-bar__order--active', shouldBeActive);
   });
-};
+}
 
 /**
  * Conditionally hide load-more-posts button.
@@ -158,7 +158,7 @@ function hideLoadMore(shouldHide) {
   loadMorePostsButton[0].classList.toggle(
     "mod--hide", shouldHide);
   return;
-};
+}
 
 /**
  * Delete post <article> DOM node by data attribute.
@@ -172,7 +172,7 @@ function updateTimestamps() {
     elem.textContent = helpers.convertTimestamp(timestamp);
   }
   return null;
-};
+}
 
 module.exports = {
   addPosts: addPosts,

@@ -21,7 +21,7 @@ function getEmptyVm(items) {
     currentPage: 1,
     totalPosts: 0
   };
-};
+}
 
 /**
  * Private API request method
@@ -177,13 +177,13 @@ vm.getQuery = function(opts) {
     query.query.filtered.filter.and[3].range._updated = {
       "gt": opts.fromDate
     };
-  };
+  }
 
   if (opts.highlightsOnly === true) {
     query.query.filtered.filter.and.push({
         term: {highlight: true}
     });
-  };
+  }
 
   if (opts.sort === "ascending") {
     query.sort[0]._updated.order = "asc";

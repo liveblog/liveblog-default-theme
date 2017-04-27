@@ -21,7 +21,7 @@ function enableCustomEvent() {
 }
 
 function enableClassList() {
-  if (("classList" in document.documentElement)) {
+  if ("classList" in document.documentElement) {
     return;
   }
 

@@ -33,10 +33,10 @@ function convertTimestamp(timestamp) {
     }
 
     return getTimeAgoString(timestamp, "d"); // default
-  };
+  }
 
   return timeAgo(diff);
-};
+}
 
 /**
  * Wrap element selector api
@@ -47,7 +47,7 @@ function getElems(query) {
   return isDataAttr
     ? document.querySelectorAll(query)
     : document.getElementsByClassName(query);
-};
+}
 
 /**
  * jQuery's $.getJSON in a nutshell
