@@ -97,20 +97,17 @@ gulp.task('less', ['clean-css'], () => gulp.src(inputPath + 'less/liveblog.less'
   .pipe(gulp.dest(''))
 );
 
-gulp.task('extend-less', [], () => {
-  if (fs.existsSync('./less/*.less')) {
-    return gulp.src('./less/*.less')
-      .pipe(plugins.less({
-        paths: [path.join(__dirname, 'less', 'includes')]
-      }))
+gulp.task('extend-less', [], () => gulp.src('./less/*.less')
+  .pipe(plugins.less({
+    paths: [path.join(__dirname, 'less', 'includes')]
+  }))
 
-      .pipe(plugins.if(!DEBUG, plugins.minifyCss({compatibility: 'ie8'})))
-      .pipe(plugins.rev())
-      .pipe(gulp.dest('./dist'))
-      .pipe(plugins.rev.manifest('dist/rev-manifest.json', {merge: true}))
-      .pipe(gulp.dest(''));
-  }
-});
+  .pipe(plugins.if(!DEBUG, plugins.minifyCss({compatibility: 'ie8'})))
+  .pipe(plugins.rev())
+  .pipe(gulp.dest('./dist'))
+  .pipe(plugins.rev.manifest('dist/rev-manifest.json', {merge: true}))
+  .pipe(gulp.dest(''))
+);
 
 // Inject API response into template for dev/test purposes.
 gulp.task('index-inject', ['less', 'browserify'], () => {
