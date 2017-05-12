@@ -106,7 +106,7 @@ gulp.task('extend-less', [], () => {
 
       .pipe(plugins.if(!DEBUG, plugins.minifyCss({compatibility: 'ie8'})))
       .pipe(plugins.rev())
-      .pipe(gulp.dest('./dist'))
+      .pipe(gulp.dest('./dist/extend.css'))
       .pipe(plugins.rev.manifest('dist/rev-manifest.json', {merge: true}))
       .pipe(gulp.dest('extended'));
   }
@@ -182,7 +182,13 @@ gulp.task('theme-replace', ['browserify', 'less'], () => {
 });
 
 // Serve index.html for local testing.
-gulp.task('serve', ['browserify', 'less', 'index-inject'], () => {
+let servePreviousTasks = ['browserify', 'less', 'index-inject'];
+
+if (process.env.EXTENDED_MODE) {
+  servePreviousTasks.splice(2, 0, 'extend-less');
+}
+
+gulp.task('serve', servePreviousTasks, () => {
   plugins.connect.server({
     port: 8008,
     root: '.',
