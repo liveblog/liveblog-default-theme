@@ -106,9 +106,9 @@ gulp.task('extend-less', [], () => {
 
       .pipe(plugins.if(!DEBUG, plugins.minifyCss({compatibility: 'ie8'})))
       .pipe(plugins.rev())
-      .pipe(gulp.dest('./dist/extend.css'))
+      .pipe(gulp.dest('./dist'))
       .pipe(plugins.rev.manifest('dist/rev-manifest.json', {merge: true}))
-      .pipe(gulp.dest('extended'));
+      .pipe(gulp.dest(''));
   }
 });
 
