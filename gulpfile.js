@@ -97,6 +97,21 @@ gulp.task('less', ['clean-css'], () => gulp.src(inputPath + 'less/liveblog.less'
   .pipe(gulp.dest(''))
 );
 
+gulp.task('extend-less', [], () => {
+  if (fs.existsSync('./less/*.less')) {
+    return gulp.src('./less/*.less')
+      .pipe(plugins.less({
+        paths: [path.join(__dirname, 'less', 'includes')]
+      }))
+
+      .pipe(plugins.if(!DEBUG, plugins.minifyCss({compatibility: 'ie8'})))
+      .pipe(plugins.rev())
+      .pipe(gulp.dest('./dist'))
+      .pipe(plugins.rev.manifest('dist/rev-manifest.json', {merge: true}))
+      .pipe(gulp.dest('extended'));
+  }
+});
+
 // Inject API response into template for dev/test purposes.
 gulp.task('index-inject', ['less', 'browserify'], () => {
   var testdata = require('./test');
@@ -196,7 +211,11 @@ gulp.task('clean-css', () => del(['dist/*.css']));
 gulp.task('clean-js', () => del(['dist/*.js']));
 
 // Default build for production
-gulp.task('default', ['browserify', 'less', 'theme-replace', 'template-inject']);
+if (process.env.EXTENDED_MODE) {
+  gulp.task('default', ['browserify', 'less', 'extend-less', 'theme-replace', 'template-inject']);
+} else {
+  gulp.task('default', ['browserify', 'less', 'theme-replace', 'template-inject']);
+}
 
 // Default build for development
 gulp.task('devel', ['browserify', 'less', 'theme-replace', 'index-inject']);
