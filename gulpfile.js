@@ -41,7 +41,7 @@ function getThemeSettings(options) {
 
 // Function to async reload default theme options.
 function loadThemeJSON() {
-  fs.readFile('theme.json', 'utf8', (err, data) => {
+  fs.readFile(inputPath + 'theme.json', 'utf8', (err, data) => {
     theme = JSON.parse(data);
   });
 }
