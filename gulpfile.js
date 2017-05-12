@@ -199,3 +199,5 @@ gulp.task('default', ['browserify', 'less', 'theme-replace', 'template-inject'])
 
 // Default build for development
 gulp.task('devel', ['browserify', 'less', 'theme-replace', 'index-inject']);
+
+module.exports = gulp;
