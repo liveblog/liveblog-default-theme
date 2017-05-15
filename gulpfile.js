@@ -22,7 +22,7 @@ var nunjucksOptions = {
 var paths = {
   less: inputPath + 'less/*.less',
   js: [inputPath + 'js/*.js', inputPath + 'js/*/*.js'],
-  jsfile: inputPath + 'liveblog.js',
+  jsfile: 'liveblog.js', // Browserify basedir
   cssfile: inputPath + 'liveblog.css',
   templates: inputPath + 'templates/*.html'
 };
@@ -52,17 +52,32 @@ gulp.task('lint', () => gulp.src([inputPath + 'js/**/*.js',inputPath + 'gulpfile
   .pipe(eslint.failAfterError())
 );
 
+gulp.task('move-templates', () => gulp.src(inputPath + 'templates/*.html')
+  .pipe(gulp.dest('./templates-dist')));
+
+gulp.task('move-subtemplates', ['move-templates'], () => gulp.src('./templates/*.html')
+  .pipe(gulp.dest('./templates-dist')));
+
 // Browserify.
-gulp.task('browserify', ['clean-js'], (cb) => {
+let browserifyPreviousTasks = ['clean-js', 'move-templates'];
+
+if (process.env.EXTENDED_MODE) {
+  browserifyPreviousTasks.push('move-subtemplates');
+}
+
+gulp.task('browserify', browserifyPreviousTasks, (cb) => {
   var b = browserify({
-    entries: inputPath + 'js/liveblog.js',
+    basedir: inputPath,
+    entries: 'js/liveblog.js',
     fullPaths: true,
     debug: DEBUG
   });
 
   var rewriteFilenames = function(filename) {
     var parts = filename.split("/");
+    console.log('filename', filename, parts[parts.length - 1]);
     return parts[parts.length - 1];
+    //return filename;
   };
 
   // Source-mapped
@@ -79,7 +94,7 @@ gulp.task('browserify', ['clean-js'], (cb) => {
     .pipe(plugins.rev())
     .pipe(plugins.ngAnnotate())
     .pipe(plugins.if(!DEBUG, plugins.uglify()))
-    .pipe(gulp.dest('./dist/'))
+    .pipe(gulp.dest('./dist'))
     .pipe(plugins.rev.manifest('dist/rev-manifest.json', {merge: true}))
     .pipe(gulp.dest(''));
 });
@@ -136,12 +151,7 @@ gulp.task('index-inject', ['less', 'browserify'], () => {
 gulp.task('template-inject', ['less', 'browserify'], () => {
   var themeSettings = getThemeSettings(theme.options);
 
-  //var _api_response = {};
-  //var sources = gulp.src(['./dist/*.js', './dist/*.css'], {
-  //  read: false // We're only after the file paths
-  //});
-
-  return gulp.src(inputPath + 'templates/template.html')
+  return gulp.src(inputPath + 'templates-dist/template.html')
     .pipe(plugins.nunjucks.compile({
       theme: theme,
       theme_json: JSON.stringify(theme, null, 4),
@@ -151,7 +161,7 @@ gulp.task('template-inject', ['less', 'browserify'], () => {
     }))
 
     // Add nunjucks/jinja2 template for server-side processing.
-    .pipe(plugins.inject(gulp.src([inputPath + 'templates/template-timeline.html']), {
+    .pipe(plugins.inject(gulp.src([inputPath + 'templates-dist/template-timeline.html']), {
       starttag: '<!-- inject:template-content -->',
       transform: function(filepath, file) {
         return file.contents.toString();
