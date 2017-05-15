@@ -4,6 +4,8 @@
 
 'use strict';
 
+require("Less/liveblog.less");
+
 // Prerender functions
 var theme = require('./theme');
 

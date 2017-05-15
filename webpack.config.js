@@ -1,13 +1,16 @@
 const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: './js/liveblog.js',
+  entry: ['./js/liveblog.js'],
   output: {
-    filename: 'bundle.js',
+    filename: 'liveblog.js',
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
     alias: {
+      Less: path.resolve(__dirname, 'less/'),
       Templates: path.resolve(__dirname, 'templates/')
     }
   },
@@ -15,8 +18,34 @@ module.exports = {
     loaders: [
       {
         test: /\.html$/,
-        loader: 'nunjucks-loader'
-      }
+        use: 'nunjucks-loader'
+      },
+      {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: "css-loader!less-loader",
+        }),
+      },
+      {
+        test: /\.(png|gif|jpeg|jpg|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
+        use: 'file-loader'
+      },
     ]
-  }
+  },
+  devServer: {
+    inline: false,
+    hot: true,
+    // enable HMR on the server
+
+    contentBase: path.resolve(__dirname, 'dist'),
+    // match the output path
+
+    publicPath: '/'
+    // match the output `publicPath`
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin('styles.css'),
+  ]
 };

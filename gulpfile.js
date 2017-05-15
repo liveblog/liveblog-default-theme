@@ -3,6 +3,10 @@
 var DEBUG = process.env.NODE_ENV !== "production";
 const inputPath = process.env.EXTENDED_MODE ? './node_modules/liveblog-default-theme/' : '';
 
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config');
+const WebpackDevServer = require('webpack-dev-server');
+
 var gulp = require('gulp')
   , browserify = require('browserify')
   , nunjucksify = require('nunjucksify')
@@ -125,14 +129,14 @@ gulp.task('extend-less', [], () => gulp.src('./less/*.less')
 );
 
 // Inject API response into template for dev/test purposes.
-gulp.task('index-inject', ['less', 'browserify'], () => {
+gulp.task('index-inject', () => {
   var testdata = require('./test');
   var sources = gulp.src(['./dist/*.js', './dist/*.css'], {
     read: false // We're only after the file paths
   });
 
   return gulp.src(inputPath + 'templates/template-index.html')
-    .pipe(plugins.inject(sources))
+    //.pipe(plugins.inject(sources))
     .pipe(plugins.nunjucks.compile({
       theme: testdata.options,
       theme_json: JSON.stringify(testdata.options, null, 4),
@@ -189,7 +193,7 @@ gulp.task('theme-replace', ['browserify', 'less'], () => {
 });
 
 // Serve index.html for local testing.
-let servePreviousTasks = ['browserify', 'less', 'index-inject'];
+let servePreviousTasks = ['pack', 'index-inject'];
 
 if (process.env.EXTENDED_MODE) {
   servePreviousTasks.splice(2, 0, 'extend-less');
@@ -214,6 +218,37 @@ gulp.task('watch-static', ['serve'], () => {
     el.on('error', (e) => {
       console.error(e.toString());
     });
+  });
+});
+
+gulp.task('pack', (cb) => {
+  webpack(webpackConfig, (err, stats) => {
+    if (err) {
+      throw err;
+    }
+
+    console.info(stats.toString({
+      chunks: false, // Makes the build much quieter
+      colors: true
+    }));
+
+    cb();
+  });
+});
+
+gulp.task('pack-dev', () => {
+  webpackConfig.entry.unshift("webpack-dev-server/client?http://localhost:8080/");
+  const compiler = webpack(webpackConfig);
+
+  const server = new WebpackDevServer(compiler, {
+    stats: {
+      chunks: false, // Makes the build much quieter
+      colors: true
+    }
+  });
+
+  server.listen(8008, "127.0.0.1", () => {
+    console.log("Starting server on http://localhost:8080");
   });
 });
 
