@@ -53,10 +53,10 @@ gulp.task('lint', () => gulp.src([inputPath + 'js/**/*.js',inputPath + 'gulpfile
 );
 
 gulp.task('move-templates', () => gulp.src(inputPath + 'templates/*.html')
-  .pipe(gulp.dest('./templates-dist')));
+  .pipe(gulp.dest(inputPath + 'templates-dist')));
 
 gulp.task('move-subtemplates', ['move-templates'], () => gulp.src('./templates/*.html')
-  .pipe(gulp.dest('./templates-dist')));
+  .pipe(gulp.dest(inputPath + 'templates-dist')));
 
 // Browserify.
 let browserifyPreviousTasks = ['clean-js', 'move-templates'];
@@ -75,7 +75,7 @@ gulp.task('browserify', browserifyPreviousTasks, (cb) => {
 
   var rewriteFilenames = function(filename) {
     var parts = filename.split("/");
-    console.log('filename', filename, parts[parts.length - 1]);
+    console.log('filename', filename);
     return parts[parts.length - 1];
     //return filename;
   };
@@ -131,7 +131,7 @@ gulp.task('index-inject', ['less', 'browserify'], () => {
     read: false // We're only after the file paths
   });
 
-  return gulp.src(inputPath + 'templates/template-index.html')
+  return gulp.src(inputPath + 'templates-dist/template-index.html')
     .pipe(plugins.inject(sources))
     .pipe(plugins.nunjucks.compile({
       theme: testdata.options,
