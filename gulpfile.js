@@ -131,12 +131,12 @@ gulp.task('extend-less', [], () => gulp.src('./less/*.less')
 // Inject API response into template for dev/test purposes.
 gulp.task('index-inject', () => {
   var testdata = require('./test');
-  var sources = gulp.src(['./dist/*.js', './dist/*.css'], {
+  var sources = gulp.src(['./dist/liveblog.js', './dist/styles.css'], {
     read: false // We're only after the file paths
   });
 
   return gulp.src(inputPath + 'templates/template-index.html')
-    //.pipe(plugins.inject(sources))
+    .pipe(plugins.inject(sources))
     .pipe(plugins.nunjucks.compile({
       theme: testdata.options,
       theme_json: JSON.stringify(testdata.options, null, 4),
@@ -147,7 +147,7 @@ gulp.task('index-inject', () => {
     }, nunjucksOptions))
 
     .pipe(plugins.rename("index.html"))
-    .pipe(gulp.dest('.'))
+    .pipe(gulp.dest('./dist'))
     .pipe(plugins.connect.reload());
 });
 
@@ -236,7 +236,7 @@ gulp.task('pack', (cb) => {
   });
 });
 
-gulp.task('pack-dev', () => {
+gulp.task('pack-dev', ['index-inject'], () => {
   webpackConfig.entry.unshift("webpack-dev-server/client?http://localhost:8080/");
   const compiler = webpack(webpackConfig);
 
@@ -247,9 +247,7 @@ gulp.task('pack-dev', () => {
     }
   });
 
-  server.listen(8008, "127.0.0.1", () => {
-    console.log("Starting server on http://localhost:8080");
-  });
+  server.listen(8008);
 });
 
 // Clean CSS

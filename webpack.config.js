@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+//const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: ['./js/liveblog.js'],
@@ -11,7 +12,7 @@ module.exports = {
   resolve: {
     alias: {
       Less: path.resolve(__dirname, 'less/'),
-      Templates: path.resolve(__dirname, 'templates/')
+      templates: path.resolve(__dirname, 'templates/')
     }
   },
   module: {
@@ -46,6 +47,10 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('liveblog.css'),
+    //new HtmlWebpackPlugin({
+    //  title: 'Custom template using Handlebars',
+    //  template: 'templates/template-index.html'
+    //})
   ]
 };

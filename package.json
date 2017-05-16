@@ -41,6 +41,7 @@
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
     "gutil": "^1.6.4",
+    "html-webpack-plugin": "^2.28.0",
     "less": "^2.7.2",
     "less-loader": "^4.0.3",
     "nunjucks-loader": "^2.4.8",
