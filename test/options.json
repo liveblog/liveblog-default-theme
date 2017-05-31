@@ -171,7 +171,8 @@
     "authorNameLinksToEmail":false,
     "showAuthor":true,
     "datetimeFormat":"lll",
-    "infinitScroll":false
+    "infinitScroll":false,
+    "gAnalytics": "GA-123456-DE"
   },
   "l10n": {
     "ascending": "Oldest first",
