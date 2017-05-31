@@ -16,15 +16,15 @@
     },
     "license": "AGPL-3.0",
     "devStyles": ["dist/liveblog-d1d4c61067.css"],
-    "devScripts": ["dist/liveblog-608e25c2a6.js"],
+    "devScripts": ["dist/liveblog-33447926e8.js"],
     "styles": ["dist/liveblog-d1d4c61067.css"],
-    "scripts": ["dist/liveblog-608e25c2a6.js"],
+    "scripts": ["dist/liveblog-33447926e8.js"],
     "options": [
         {
             "name": "gAnalytics",
             "label": "Google analytics code",
-            "type": "string",
-            "default": "test",
+            "type": "text",
+            "default": "GA-123456-DE",
             "help": "Set your google analytics code"
         },
         {
