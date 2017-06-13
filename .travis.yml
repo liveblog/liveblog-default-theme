@@ -23,7 +23,7 @@ addons:
       - openjdk-7-jdk
 
 before_install:
-  - sudo apt-get -y install python3-pip python-dev
+  - sudo apt-get -y install python3-pip python3-dev
 
 install:
   - npm install -g gulp
