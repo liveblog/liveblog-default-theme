@@ -30,7 +30,8 @@ install:
   - python3 --version
   - npm install -g gulp
   - npm install
-  - sudo pip3 install -r py-test/requirements.txt
+  - sudo pip3 install -U pip
+  - pip3 install -r py-test/requirements.txt
 
 script:
   - gulp lint
