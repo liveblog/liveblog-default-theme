@@ -31,11 +31,15 @@ class Slideshow {
 
         items.push({
           item: {
-            meta: {media: {renditions: {
-              baseImage: {href: baseImage},
-              thumbnail: {href: thumbnail},
-              viewImage: {href: viewImage}
-            }}},
+            meta: {
+              media: {renditions: {
+                baseImage: {href: baseImage},
+                thumbnail: {href: thumbnail},
+                viewImage: {href: viewImage}
+              }},
+              caption: img.parentNode.querySelector('span.caption').textContent,
+              credit: img.parentNode.querySelector('span.credit').textContent,
+            },
             active: thumbnail === e.target.getAttribute('src')
           }
         });
