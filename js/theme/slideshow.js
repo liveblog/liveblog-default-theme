@@ -48,7 +48,10 @@ class Slideshow {
       .insertAdjacentHTML('afterend', slideshow);
 
     window.addEventListener('keydown', this.keyboardListener);
-    window.parent.postMessage('fullscreen', window.document.referrer);
+
+    if (window.self !== window.top) {
+      window.parent.postMessage('fullscreen', window.document.referrer);
+    }
 
     this.setFocus();
 
