@@ -8,6 +8,7 @@ class Slideshow {
     this.launchIntoFullscreen = this.launchIntoFullscreen.bind(this);
     this.exitFullscreen = this.exitFullscreen.bind(this);
     this.toggleFullscreen = this.toggleFullscreen.bind(this);
+    this.addEventListeners = this.addEventListeners.bind(this);
   }
 
   start(e) {
@@ -47,17 +48,28 @@ class Slideshow {
     document.querySelector('div.lb-timeline')
       .insertAdjacentHTML('afterend', slideshow);
 
-    window.addEventListener('keydown', this.keyboardListener);
-
     if (window.self !== window.top) {
       window.parent.postMessage('fullscreen', window.document.referrer);
     }
 
     this.setFocus();
+    this.addEventListeners();
+  }
+
+  addEventListeners() {
+    window.addEventListener('keydown', this.keyboardListener);
 
     document
       .querySelector('#slideshow button.fullscreen')
       .addEventListener('click', this.toggleFullscreen);
+
+    document
+      .querySelector('#slideshow button.arrows.next')
+      .addEventListener('click', () => this.keyboardListener({keyCode: 39}));
+
+    document
+      .querySelector('#slideshow button.arrows.prev')
+      .addEventListener('click', () => this.keyboardListener({keyCode: 37}));
   }
 
   toggleFullscreen() {

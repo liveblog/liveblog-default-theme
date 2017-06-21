@@ -7,13 +7,21 @@ article.slideshow div.lb-item {
 }
 
 #slideshow {
+  :focus {
+    outline: none;
+  }
+
+  ::-moz-focus-inner {
+    border: 0;
+  }
+
   position: fixed;
   width: 100%;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background: pink;
+  background: rgba(0, 0, 0, 0.4);
   overflow: hidden;
 
   div.container {
@@ -32,9 +40,28 @@ article.slideshow div.lb-item {
     }
   }
 
-  button.fullscreen {
+  button {
     position: absolute;
+    outline: none;
+    color: black;
+    font-size: 22px;
+  }
+
+  button.fullscreen {
     right: 0;
     bottom: 10px;
+  }
+
+  button.arrows {
+    top: 0;
+    height: 100%;
+  }
+
+  button.arrows.prev {
+    left: 0;
+  }
+
+  button.arrows.next {
+    right: 0;
   }
 }
