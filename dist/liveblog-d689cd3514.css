@@ -607,8 +607,7 @@ div.comment-sent.hide .comment__wrap {
 .lb-posts.sticky {
   background: #c0ffee;
 }
-.lb-post,
-.lb-sticky-top-post {
+.lb-post {
   position: relative;
   padding: 60px 0px 20px;
   margin: 0px 30px;
@@ -977,8 +976,7 @@ article.lb-post:after {
     margin-top: 5px;
     right: 145px;
   }
-  .lb-post,
-  .lb-sticky-top-post {
+  .lb-post {
     padding: 40px 15px 70px;
   }
   .header-bar {
@@ -1075,8 +1073,7 @@ article.lb-post:after {
     height: 12px;
     background-image: none;
   }
-  .lb-post,
-  .lb-sticky-top-post {
+  .lb-post {
     padding: 35px 15px 0px;
   }
   .lb-post-date {
