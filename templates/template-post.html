@@ -1,3 +1,9 @@
+<!-- sticky position toggle -->
+{% if item.sticky and settings.stickyPosition == 'top' %}
+<article
+  class="lb-sticky-top-post list-group-item {% if settings.showGallery and item.groups[1].refs[0].item.item_type == 'image' and item.groups[1].refs|length > 1 %}slideshow{% endif %}"
+  data-js-post-id="{{ item._id }}">
+  {% else %}
 <article
   class="lb-post list-group-item show-author-avatar {% if settings.showGallery and item.groups[1].refs[0].item.item_type == 'image' and item.groups[1].refs|length > 1 %}slideshow{% endif %}"
   data-js-post-id="{{ item._id }}">
@@ -25,6 +31,8 @@
     {% endif %}
   </div>
   <!-- end author -->
+  {% endif %}
+  <!-- end sticky position toggle -->
 
   <!-- item start -->
   <div class="items-container">
