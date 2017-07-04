@@ -1,16 +1,4 @@
 {% block timeline %}
-{% if settings.stickyPosition == 'top' and api_response.stickyPosts._items|length > 0 %}
-<div class="timeline-body timeline-body--loaded">
-  <section class="lb-posts list-group">
-    {% for item in api_response.stickyPosts._items %}
-      {% if not item.deleted %}
-        {% include "template-post.html" %}
-      {% endif %}
-    {% endfor %}
-  </section>
-</div>
-{% endif %}
-
 <div class="lb-timeline {{ settings.language }}">
   {% if settings.showTitle and blog.title %}
     <h1>{{ blog.title }}</h1>
@@ -24,6 +12,18 @@
 
   {% if settings.showImage and blog.picture_url %}
     <img src="{{ blog.picture_url }}" />
+  {% endif %}
+
+  {% if settings.stickyPosition == 'top' and api_response.stickyPosts._items|length > 0 %}
+    <div class="timeline-top timeline-top--loaded">
+      <section class="lb-posts list-group">
+        {% for item in api_response.stickyPosts._items %}
+          {% if not item.deleted %}
+            {% include "template-post.html" %}
+          {% endif %}
+        {% endfor %}
+      </section>
+    </div>
   {% endif %}
 
   <!-- Header -->
