@@ -1,5 +1,5 @@
 {% if ref.item.meta.html %}
-<div class="item--embed__element">{{ ref.item.meta.html }}</div>
+<div class="item--embed__element">{{ ref.item.meta.html | safe }}</div>
 {% endif %}
 {% if (ref.item.meta.title or ref.item.meta.description or ref.item.meta.credit or (not ref.item.meta.html and ref.item.meta.thumbnail_url)) %}
 <article class="item--embed item--embed__wrapper">
