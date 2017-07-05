@@ -146,34 +146,26 @@ class Slideshow {
   }
 
   touchMove(e) {
-    if ( ! this.xDown || ! this.yDown ) {
+    if (!this.xDown || !this.yDown) {
       return;
     }
 
-    var xUp = e.touches[0].clientX;                                    
+    var xUp = e.touches[0].clientX;
     var yUp = e.touches[0].clientY;
 
     var xDiff = this.xDown - xUp;
     var yDiff = this.yDown - yUp;
 
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-        if ( xDiff > 0 ) {
-          this.keyboardListener({keyCode: 39})
-            /* left swipe */ 
-        } else {
-          this.keyboardListener({keyCode: 37})
-            /* right swipe */
-        }                       
+    if (Math.abs(xDiff) > Math.abs(yDiff) && xDiff > 0) {
+      // Left swipe
+      this.keyboardListener({keyCode: 39});
     } else {
-        if ( yDiff > 0 ) {
-            /* up swipe */ 
-        } else { 
-            /* down swipe */
-        }                                                                 
+      // Right swipe
+      this.keyboardListener({keyCode: 37});
     }
-    /* reset values */
+
     this.xDown = null;
-    this.yDown = null;  
+    this.yDown = null;
   }
 
   toggleFullscreen() {
