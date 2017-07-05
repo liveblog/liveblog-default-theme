@@ -68,6 +68,7 @@ class Slideshow {
   }
 
   stop() {
+    this.exitFullscreen();
     this.removeEventListeners();
     document.querySelector('#slideshow').remove();
   }
@@ -95,6 +96,10 @@ class Slideshow {
       .addEventListener('click', () => this.keyboardListener({keyCode: 37}));
 
     document
+      .querySelector('#slideshow button.close')
+      .addEventListener('click', this.stop);
+
+    document
       .querySelector('#slideshow')
       .addEventListener('touchstart', this.touchStart);
 
@@ -119,6 +124,18 @@ class Slideshow {
     document
       .querySelector('#slideshow button.arrows.prev')
       .removeEventListener('click', () => this.keyboardListener({keyCode: 37}));
+
+    document
+      .querySelector('#slideshow button.close')
+      .removeEventListener('click', this.stop);
+
+    document
+      .querySelector('#slideshow')
+      .removeEventListener('touchstart', this.touchStart);
+
+    document
+      .querySelector('#slideshow')
+      .removeEventListener('touchmove', this.touchMove);
 
     window.removeEventListener('resize', this.onResize);
   }
