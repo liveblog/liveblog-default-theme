@@ -59,7 +59,7 @@ var sendPageview = {
 
       if (keysfound === true) { // all required attrs found
         if (!provider.object) {
-          parent._insertScript(provider.scriptURL, provider.send); // not yet loaded
+          this._insertScript(provider.scriptURL, provider.send); // not yet loaded
         } else {
           foundProviders.push(provider.send); // list of _send funcs
         }
@@ -91,8 +91,14 @@ var sendPageview = {
   },
 
   init: function() {
-    window.addEventListener('message', this.receiveMessage, false);
-    window.addEventListener('sendpageview', this.send.bind(this), false);
+    if (window.LB.settings.gaCode === '') {
+      window.addEventListener('message', this.receiveMessage, false);
+      window.addEventListener('sendpageview', this.send.bind(this), false);
+    } else {
+      window._iframeDataset = {gaProperty: window.LB.settings.gaCode};
+      this.send = this.send.bind(this);
+      this.send();
+    }
   }
 };
 

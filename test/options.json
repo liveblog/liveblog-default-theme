@@ -26,7 +26,7 @@
       "authorNameFormat":"display_name",
       "showGallery":true,
       "stickyPosition": "bottom",
-      "gaCode": ""
+      "gaCode": "UA-XXXXX-Y"
     },
     "start_date":"2017-03-08T12:30:20+00:00",
     "picture":{
@@ -175,7 +175,7 @@
     "datetimeFormat":"lll",
     "infinitScroll":false,
     "stickyPosition": "bottom",
-    "gaCode": ""
+    "gaCode": "UA-XXXXX-Y"
   },
   "l10n": {
     "ascending": "Oldest first",
