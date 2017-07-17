@@ -21,6 +21,13 @@
     "scripts": ["dist/liveblog-1a0ca2e10b.js"],
     "options": [
         {
+            "name": "datetimeFormat",
+            "label": "Date time Format",
+            "type": "datetimeformat",
+            "default": "lll",
+            "help": "Sets the date time format to be used in the embed. Please enter a custom format in valid moment.js format http://momentjs.com/docs/#/parsing/string-format"
+        },
+        {
             "name": "postsPerPage",
             "label": "Number of posts per page",
             "type": "number",
