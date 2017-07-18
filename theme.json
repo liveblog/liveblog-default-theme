@@ -15,11 +15,18 @@
         "url" : "git@github.com:liveblog/liveblog-default-theme"
     },
     "license": "AGPL-3.0",
-    "devStyles": ["dist/liveblog-8c707d6a53.css"],
-    "devScripts": ["dist/liveblog-da7a972fda.js"],
-    "styles": ["dist/liveblog-8c707d6a53.css"],
-    "scripts": ["dist/liveblog-da7a972fda.js"],
+    "devStyles": ["dist/liveblog-f41b404169.css"],
+    "devScripts": ["dist/liveblog-9a8865542e.js"],
+    "styles": ["dist/liveblog-f41b404169.css"],
+    "scripts": ["dist/liveblog-9a8865542e.js"],
     "options": [
+        {
+            "name": "datetimeFormat",
+            "label": "Date time Format",
+            "type": "datetimeformat",
+            "default": "lll",
+            "help": "Sets the date time format to be used in the embed. Please enter a custom format in valid moment.js format http://momentjs.com/docs/#/parsing/string-format"
+        },
         {
             "name": "postsPerPage",
             "label": "Number of posts per page",
