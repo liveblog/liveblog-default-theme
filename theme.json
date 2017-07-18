@@ -146,13 +146,13 @@
         },
         {
             "name": "stickyPosition",
-            "label": "Position of sticky posts",
+            "label": "Pinned post behaviour",
             "type": "select",
             "options": [
-                {"value": "top", "label": "Top"},
-                {"value": "bottom", "label": "Bottom"}
+                {"value": "bottom", "label": "Show below menu bar"},
+                {"value": "top", "label": "Show above menu bar"}
             ],
-            "default": "top"
+            "default": "bottom"
         },
         {
             "name": "gaCode",
