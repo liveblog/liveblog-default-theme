@@ -16,9 +16,9 @@
     },
     "license": "AGPL-3.0",
     "devStyles": ["dist/liveblog-8c707d6a53.css"],
-    "devScripts": ["dist/liveblog-1a0ca2e10b.js"],
+    "devScripts": ["dist/liveblog-da7a972fda.js"],
     "styles": ["dist/liveblog-8c707d6a53.css"],
-    "scripts": ["dist/liveblog-1a0ca2e10b.js"],
+    "scripts": ["dist/liveblog-da7a972fda.js"],
     "options": [
         {
             "name": "postsPerPage",
@@ -139,13 +139,13 @@
         },
         {
             "name": "stickyPosition",
-            "label": "Position of sticky posts",
+            "label": "Pinned post behaviour",
             "type": "select",
             "options": [
-                {"value": "top", "label": "Top"},
-                {"value": "bottom", "label": "Bottom"}
+                {"value": "bottom", "label": "Show below menu bar"},
+                {"value": "top", "label": "Show above menu bar"}
             ],
-            "default": "top"
+            "default": "bottom"
         },
         {
             "name": "gaCode",
