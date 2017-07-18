@@ -21,7 +21,7 @@ module.exports = {
     localAnalytics.hit();
     pageview.init();
 
-    view.updateTimestamps()
+    view.updateTimestamps();
     setInterval(() => {
       view.updateTimestamps(); // Convert ISO dates to timeago
     }, 1000);

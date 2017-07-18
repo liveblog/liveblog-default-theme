@@ -5,10 +5,10 @@
 'use strict';
 
 var moment = require('moment'),
-    settings = window.LB.settings;
+  settings = window.LB.settings;
 
 function convertTimestamp(timestamp) {
-  if(!settings.datetimeFormat || settings.datetimeFormat === 'timeAgo') {
+  if (!settings.datetimeFormat || settings.datetimeFormat === 'timeAgo') {
     return moment(timestamp).fromNow();
   }
   return moment(timestamp).format(settings.datetimeFormat);
