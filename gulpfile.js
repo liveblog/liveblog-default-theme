@@ -127,18 +127,18 @@ gulp.task('lint', () => gulp.src([inputPath + 'js/**/*.js',inputPath + 'gulpfile
   .pipe(eslint.failAfterError())
 );
 
-gulp.task('move-templates', () => gulp.src(inputPath + 'templates/*.html')
-  .pipe(gulp.dest(inputPath + 'templates-dist')));
+//gulp.task('move-templates', () => gulp.src(inputPath + 'templates/*.html')
+//  .pipe(gulp.dest(inputPath + 'templates-dist')));
 
-gulp.task('move-subtemplates', ['move-templates'], () => gulp.src('./templates/*.html')
-  .pipe(gulp.dest(inputPath + 'templates-dist')));
+//gulp.task('move-subtemplates', ['move-templates'], () => gulp.src('./templates/*.html')
+//  .pipe(gulp.dest(inputPath + 'templates-dist')));
 
 // Browserify.
-let browserifyPreviousTasks = ['clean-js', 'move-templates'];
+let browserifyPreviousTasks = ['clean-js'];
 
-if (process.env.EXTENDED_MODE) {
-  browserifyPreviousTasks.push('move-subtemplates');
-}
+//if (process.env.EXTENDED_MODE) {
+//  browserifyPreviousTasks.push('move-subtemplates');
+//}
 
 gulp.task('browserify', browserifyPreviousTasks, (cb) => {
   var b = browserify({
@@ -210,7 +210,7 @@ gulp.task('index-inject', ['less', 'browserify'], () => {
     testdata.options.blog._id = blogId;
   }
 
-  return gulp.src('./templates/template-index.html')
+  return gulp.src(inputPath + 'templates/template-index.html')
     .pipe(plugins.inject(sources))
     .pipe(plugins.nunjucks.compile({
       options: testdata.options,
@@ -222,7 +222,7 @@ gulp.task('index-inject', ['less', 'browserify'], () => {
     }, nunjucksOptions))
 
     .pipe(plugins.rename("index.html"))
-    .pipe(gulp.dest('.'))
+    .pipe(gulp.dest(''))
     .pipe(plugins.connect.reload());
 });
 
