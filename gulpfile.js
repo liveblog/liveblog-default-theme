@@ -1,5 +1,18 @@
 'use strict';
 
+var gulp = require('gulp')
+  , browserify = require('browserify')
+  , nunjucksify = require('nunjucksify')
+  , gulpLoadPlugins = require('gulp-load-plugins')
+  , source = require('vinyl-source-stream')
+  , buffer = require('vinyl-buffer')
+  , plugins = gulpLoadPlugins()
+  , del = require('del')
+  , eslint = require('gulp-eslint')
+  , fs = require('fs')
+  , path = require('path')
+  , nunjucks = require('nunjucks');
+
 var DEBUG = process.env.NODE_ENV !== "production";
 const inputPath = process.env.EXTENDED_MODE ? './node_modules/liveblog-default-theme/' : '';
 
@@ -78,21 +91,14 @@ if (match.length > 0) {
   });
 }
 
-var gulp = require('gulp')
-  , browserify = require('browserify')
-  , nunjucksify = require('nunjucksify')
-  , gulpLoadPlugins = require('gulp-load-plugins')
-  , source = require('vinyl-source-stream')
-  , buffer = require('vinyl-buffer')
-  , plugins = gulpLoadPlugins()
-  , path = require('path')
-  , del = require('del')
-  , eslint = require('gulp-eslint')
-  , fs = require('fs');
+const templatePath = [
+  path.resolve(__dirname, 'templates'),
+  path.resolve(__dirname, 'node_modules/liveblog-default-theme/templates')
+]
+, nunjucksLoader = new nunjucks.FileSystemLoader(templatePath);
 
-var nunjucksOptions = {
-  env: require('./js/nunjucks_extensions').nunjucksEnv
-};
+const nunjucksOptions = { env: nunjucks.Environment(nunjucksLoader) };
+
 
 var paths = {
   less: inputPath + 'less/*.less',
@@ -210,7 +216,8 @@ gulp.task('index-inject', ['less', 'browserify'], () => {
     testdata.options.blog._id = blogId;
   }
 
-  return gulp.src(inputPath + 'templates/template-index.html')
+  return gulp.src('./templates/template-index.html')
+  //return gulp.src(inputPath + 'templates/template-index.html')
     .pipe(plugins.inject(sources))
     .pipe(plugins.nunjucks.compile({
       options: testdata.options,
