@@ -91,15 +91,13 @@ if (match.length > 0) {
   });
 }
 
-console.log(path.resolve(__dirname, '../../templates'));
-
 const templatePath = [
   path.resolve(__dirname, '../../templates'),
   path.resolve(__dirname, 'templates')
-]
-, nunjucksLoader = new nunjucks.FileSystemLoader(templatePath);
+];
 
-const nunjucksOptions = { env: new nunjucks.Environment(nunjucksLoader) };
+const nunjucksLoader = new nunjucks.FileSystemLoader(templatePath);
+const nunjucksOptions = {env: new nunjucks.Environment(nunjucksLoader)};
 
 
 var paths = {
