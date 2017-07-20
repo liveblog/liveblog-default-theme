@@ -5,15 +5,19 @@
   data-js-post-id="{{ item._id }}">
   {% else %}
 <article
-  class="lb-post list-group-item show-author-avatar {{ item.post_items_type }}"
+  class="lb-post list-group-item show-author-avatar {{ item.post_items_type }} {% if item.lb_highlight %}lb-post--highlighted{% endif %}"
   data-js-post-id="{{ item._id }}">
 
-
-  {% if item.sticky %}
+  {% if item.sticky and item.lb_highlight %}
     <div class="lb-type"></div>
-    <img src="{{ assets_root }}images/pinpost.svg" class="lb-post-pin" />
+    <img src="{{ assets_root }}images/pinpost.svg" class="pin-icon" />
+    <img src="{{ assets_root }}images/highlighted.svg" class="highlight-icon" />
+  {% elif item.sticky %}
+    <div class="lb-type"></div>
+    <img src="{{ assets_root }}images/pinpost.svg" class="pin-icon" />
   {% elif item.lb_highlight %}
-    <div class="lb-type lb-post-highlighted"></div>
+    <div class="lb-type"></div>
+    <img src="{{ assets_root }}images/highlighted.svg" class="highlight-icon" />
   {% elif item.post_items_type == "advertisement" %}
   <div class="lb-advertisement">Advertisement</div>
   {% else %}
