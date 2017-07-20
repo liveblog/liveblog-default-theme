@@ -1,7 +1,7 @@
 {
     "label": "Liveblog 3 Default SEO Theme",
     "name": "default",
-    "version": "0.1.42",
+    "version": "0.1.43",
     "seoTheme": true,
     "author": "Sourcefabric <contact@sourcefabric.org>",
     "contributors": [
@@ -15,11 +15,18 @@
         "url" : "git@github.com:liveblog/liveblog-default-theme"
     },
     "license": "AGPL-3.0",
-    "devStyles": ["dist/liveblog-d1d4c61067.css"],
-    "devScripts": ["dist/liveblog-e90ded4a5a.js"],
-    "styles": ["dist/liveblog-d1d4c61067.css"],
-    "scripts": ["dist/liveblog-e90ded4a5a.js"],
+    "devStyles": ["dist/liveblog-20212183dd.css"],
+    "devScripts": ["dist/liveblog-1657a1e6ca.js"],
+    "styles": ["dist/liveblog-20212183dd.css"],
+    "scripts": ["dist/liveblog-1657a1e6ca.js"],
     "options": [
+        {
+            "name": "datetimeFormat",
+            "label": "Date time Format",
+            "type": "datetimeformat",
+            "default": "lll",
+            "help": "Sets the date time format to be used in the embed. Please enter a custom format in valid moment.js format http://momentjs.com/docs/#/parsing/string-format"
+        },
         {
             "name": "postsPerPage",
             "label": "Number of posts per page",
@@ -129,6 +136,30 @@
             "type": "checkbox",
             "default": true,
             "help": "Block search engines from indexing my blogs"
+        },
+        {
+            "name": "showGallery",
+            "label": "Show slideshow gallery",
+            "type": "checkbox",
+            "default": false,
+            "help": "If the users will see the slideshow gallery for multiple images posts"
+        },
+        {
+            "name": "stickyPosition",
+            "label": "Pinned post behaviour",
+            "type": "select",
+            "options": [
+                {"value": "bottom", "label": "Show below menu bar"},
+                {"value": "top", "label": "Show above menu bar"}
+            ],
+            "default": "bottom"
+        },
+        {
+            "name": "gaCode",
+            "label": "Google analytics code",
+            "type": "text",
+            "default": "",
+            "help": "Please type in your google analytics code"
         }
     ],
     "l10n": {

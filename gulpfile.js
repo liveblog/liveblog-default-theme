@@ -3,6 +3,81 @@
 var DEBUG = process.env.NODE_ENV !== "production";
 const inputPath = process.env.EXTENDED_MODE ? './node_modules/liveblog-default-theme/' : '';
 
+let argvKey = 0,
+  apiHost = '',
+  blogId = '',
+  protocol = '',
+  apiResponse = {
+    posts: {_items: []},
+    stickyPosts: {_items: []}
+  },
+  match = [];
+
+const http = require('http');
+const https = require('https');
+
+['--embedUrl', '--apiUrl'].forEach((argName) => {
+  if (process.argv.indexOf(argName) !== -1) {
+    argvKey = process.argv.indexOf(argName)+1;
+  }
+});
+
+if (argvKey !== 0) {
+  match = process.argv[argvKey]
+    //.match(/^(http:\/\/|https:\/\/|\/\/)([^/]+)\/(api\/client_blogs|embed)\/(\w+)/i);
+    .match(/^(http:\/\/|https:\/\/|\/\/)([^\/]+)\/(api\/client_blogs|embed|[^\/]+\/blogs)\/(\w+)/i);
+}
+
+if (match.length > 0) {
+  [,protocol, apiHost,, blogId] = match;
+
+  const postsEndpoint = `${protocol}${apiHost}/api/client_blogs/${blogId}/posts`;
+  const request = protocol === 'http://' ? http : https;
+
+  let query = {
+    "query": {
+      "filtered": {
+        "filter": {
+          "and": [
+            {"term": {"sticky": true}},
+            {"term": {"post_status": "open"}},
+            {"not": {"term": {"deleted": true}}}
+          ]
+        }
+      }
+    },
+    "sort": [
+      {
+        "_updated": {"order": "desc"}
+      }
+    ]
+  };
+
+  request.get(`${postsEndpoint}?source=${JSON.stringify(query)}`, (response) => {
+    let body = '';
+
+    response.on('data', (d) => {
+      body += d;
+    });
+    response.on('end', () => {
+      apiResponse.stickyPosts = JSON.parse(body);
+    });
+  });
+
+  query.query.filtered.filter.and[0].term.sticky = false;
+
+  request.get(`${postsEndpoint}?source=${JSON.stringify(query)}`, (response) => {
+    let body = '';
+
+    response.on('data', (d) => {
+      body += d;
+    });
+    response.on('end', () => {
+      apiResponse.posts = JSON.parse(body);
+    });
+  });
+}
+
 var gulp = require('gulp')
   , browserify = require('browserify')
   , nunjucksify = require('nunjucksify')
@@ -75,7 +150,6 @@ gulp.task('browserify', browserifyPreviousTasks, (cb) => {
 
   var rewriteFilenames = function(filename) {
     var parts = filename.split("/");
-    console.log('filename', filename);
     return parts[parts.length - 1];
     //return filename;
   };
@@ -131,13 +205,18 @@ gulp.task('index-inject', ['less', 'browserify'], () => {
     read: false // We're only after the file paths
   });
 
-  return gulp.src(inputPath + 'templates-dist/template-index.html')
+  if (apiResponse.posts._items.length > 0) {
+    testdata.options.api_host = `${protocol}${apiHost}`;
+    testdata.options.blog._id = blogId;
+  }
+
+  return gulp.src('./templates/template-index.html')
     .pipe(plugins.inject(sources))
     .pipe(plugins.nunjucks.compile({
-      theme: testdata.options,
-      theme_json: JSON.stringify(testdata.options, null, 4),
+      options: testdata.options,
+      json_options: JSON.stringify(testdata.options, null, 4),
       settings: testdata.options.settings,
-      api_response: testdata.api_response,
+      api_response: apiResponse.posts._items.length > 0 ? apiResponse : testdata.api_response,
       include_js_options: true,
       debug: DEBUG
     }, nunjucksOptions))
@@ -151,7 +230,7 @@ gulp.task('index-inject', ['less', 'browserify'], () => {
 gulp.task('template-inject', ['less', 'browserify'], () => {
   var themeSettings = getThemeSettings(theme.options);
 
-  return gulp.src(inputPath + 'templates-dist/template.html')
+  return gulp.src('./templates/template.html')
     .pipe(plugins.nunjucks.compile({
       theme: theme,
       theme_json: JSON.stringify(theme, null, 4),

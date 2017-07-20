@@ -8,10 +8,11 @@ const nunjucks = require("nunjucks/browser/nunjucks-slim");
 const settings = window.LB.settings;
 
 const defaultTemplates = {
-  post: require("../../templates-dist/template-post.html"),
-  timeline: require("../../templates-dist/template-timeline.html"),
-  itemImage: require("../../templates-dist/template-item-image.html"),
-  itemEmbed: require("../../templates-dist/template-item-embed.html")
+  post: require("../../templates/template-post.html"),
+  timeline: require("../../templates/template-timeline.html"),
+  itemImage: require("../../templates/template-item-image.html"),
+  itemEmbed: require("../../templates/template-item-embed.html"),
+  slideshow: require("../../templates/template-slideshow.html")
 };
 
 function getCustomTemplates() {

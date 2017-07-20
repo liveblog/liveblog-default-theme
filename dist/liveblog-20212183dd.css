@@ -651,6 +651,9 @@ article.lb-post:after {
   width: 40px;
   z-index: 3;
 }
+.lb-post-pin + .lb-post-date {
+  margin-left: 10px;
+}
 @media screen and (max-width: 680px) {
   .lb-post-date__fulldate {
     margin-left: 0px;
@@ -704,11 +707,22 @@ article.lb-post:after {
   background-color: #A0A0A0;
   margin-top: 4px;
 }
+.sticky + .lb-posts.list-group {
+  background-size: 0px;
+}
 .lb-type--embed {
+  top: 60px;
+  left: 0px;
   width: 40px;
   height: 40px;
   margin-left: -18px;
   margin-top: -10px;
+}
+@media screen and (max-width: 680px) {
+  .lb-type--embed {
+    top: 40px;
+    left: 15px;
+  }
 }
 .lb-type--twitter {
   background-color: #6bacdf;
@@ -775,6 +789,7 @@ article.lb-post:after {
   border-radius: 50%;
   overflow: hidden;
   background: #B9B9B9 url("../images/avatar_64.png") no-repeat;
+  background-size: 45px 45px;
   border: 1px solid #f4f4f4;
   float: left;
   margin-left: 20px;
@@ -830,9 +845,11 @@ article.lb-post:after {
 }
 .item--embed__title {
   font-size: 1.25em;
-  font-weight: 700;
   line-height: 1.25em;
   margin-bottom: .25em;
+}
+.item--embed__title a {
+  text-decoration: none;
 }
 .item--embed__credit {
   text-align: right;
@@ -883,7 +900,15 @@ article.lb-post:after {
   background-color: #C6C6C6;
   margin-top: -2px;
 }
-.lb-post:hover .lb-post-permalink {
+.lb-advertisement {
+  position: absolute;
+  margin-top: -45px;
+  padding-left: 20px;
+  color: #767676;
+  font-size: 0.75rem;
+}
+.lb-post:hover .lb-post-permalink,
+.lb-sticky-top-post:hover .lb-post-permalink {
   visibility: visible;
 }
 /* pinned posts */
@@ -914,6 +939,12 @@ article.lb-post:after {
 }
 .pin-drawer {
   box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.25);
+}
+.lb-post-pin {
+  float: left;
+  width: 10px;
+  margin-top: -6px;
+  margin-left: 60px;
 }
 .mod--hide {
   visibility: hidden;
@@ -951,7 +982,8 @@ article.lb-post:after {
     margin-left: 0;
     margin-top: 18px;
   }
-  .lb-post {
+  .lb-post,
+  .lb-sticky-top-post {
     margin: 0;
   }
   .lb-post-date {
@@ -1082,4 +1114,115 @@ article.lb-post:after {
 iframe {
   width: 100% !important;
   max-width: 100% !important;
+}
+article.slideshow div.items-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px 30px;
+}
+article.slideshow div.items-container div.lb-item {
+  margin: 0;
+  display: inline-block;
+}
+article.slideshow div.items-container div.lb-item figure {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+}
+article.slideshow div.items-container div.lb-item figure figcaption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  margin: 0;
+}
+article.slideshow div.items-container div.lb-item figure img {
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+article.slideshow div.items-container div.lb-item.portrait img {
+  width: 100%;
+  height: auto;
+}
+#slideshow {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+#slideshow :focus {
+  outline: none;
+}
+#slideshow ::-moz-focus-inner {
+  border: 0;
+}
+#slideshow div.container {
+  height: 100%;
+}
+#slideshow div.container figure {
+  width: 100%;
+  height: 100%;
+  float: left;
+  text-align: center;
+  margin: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#slideshow div.container figure img {
+  max-height: 100%;
+}
+#slideshow div.container figure figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: white;
+  font-size: 20px;
+  text-shadow: 0px 0px 3px #000;
+  background: rgba(0, 0, 0, 0.4);
+}
+#slideshow button {
+  position: absolute;
+  outline: none;
+  color: black;
+  font-size: 22px;
+}
+#slideshow button.fullscreen {
+  right: 0;
+  bottom: 10px;
+}
+#slideshow button.close {
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+#slideshow button.arrows {
+  top: 0;
+  height: 100%;
+}
+#slideshow button.arrows.prev {
+  left: 0;
+}
+#slideshow button.arrows.next {
+  right: 0;
 }

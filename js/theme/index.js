@@ -4,9 +4,11 @@
 
 'use strict';
 
-var handlers = require("./handlers")
-  , viewmodel = require("./viewmodel")
-  , view = require("./view");
+const handlers = require('./handlers'),
+  viewmodel = require('./viewmodel'),
+  view = require('./view'),
+  pageview = require('./pageview'),
+  localAnalytics = require('./local-analytics');
 
 module.exports = {
   /**
@@ -16,11 +18,10 @@ module.exports = {
     handlers.buttons.attach(); // Register Buttons Handlers
     handlers.events.attach(); // Register Event, Message Handlers
     viewmodel.init();
+    localAnalytics.hit();
+    pageview.init();
 
-    // setInterval(function() {
-    //   viewmodel.loadPosts().then(view.renderPosts); // Start polling
-    // }, 10*1000)
-
+    view.updateTimestamps();
     setInterval(() => {
       view.updateTimestamps(); // Convert ISO dates to timeago
     }, 1000);

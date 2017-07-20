@@ -24,7 +24,9 @@
       "showAuthorAvatar":true,
       "showTitle":true,
       "authorNameFormat":"display_name",
-      "showGallery":false
+      "showGallery":true,
+      "stickyPosition": "bottom",
+      "gaCode": "UA-XXXXX-Y"
     },
     "start_date":"2017-03-08T12:30:20+00:00",
     "picture":{
@@ -164,14 +166,16 @@
     "showGallery":true,
     "postsPerPage":10,
     "language":"en",
-    "postOrder":"oldest_first",
+    "postOrder":"editorial",
     "showDescription":true,
     "permalinkDelimiter":"?",
     "showImage":false,
     "authorNameLinksToEmail":false,
     "showAuthor":true,
     "datetimeFormat":"lll",
-    "infinitScroll":false
+    "infinitScroll":false,
+    "stickyPosition": "bottom",
+    "gaCode": "UA-XXXXX-Y"
   },
   "l10n": {
     "ascending": "Oldest first",
