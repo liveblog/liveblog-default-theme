@@ -91,9 +91,11 @@ if (match.length > 0) {
   });
 }
 
+console.log(path.resolve(__dirname, '../../templates'));
+
 const templatePath = [
-  path.resolve(__dirname, 'templates'),
-  path.resolve(__dirname, 'node_modules/liveblog-default-theme/templates')
+  path.resolve(__dirname, '../../templates'),
+  path.resolve(__dirname, 'templates')
 ]
 , nunjucksLoader = new nunjucks.FileSystemLoader(templatePath);
 
