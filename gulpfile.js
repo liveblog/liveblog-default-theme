@@ -97,7 +97,7 @@ const templatePath = [
 ]
 , nunjucksLoader = new nunjucks.FileSystemLoader(templatePath);
 
-const nunjucksOptions = { env: nunjucks.Environment(nunjucksLoader) };
+const nunjucksOptions = { env: new nunjucks.Environment(nunjucksLoader) };
 
 
 var paths = {
