@@ -6,7 +6,7 @@
 .lb-timeline {
     clear: both;
     background-color: white;
-    max-width: 680px;
+    max-width: 720px;
     margin: 0 auto;
     margin-top: 30px;
     overflow-x: hidden;
@@ -254,7 +254,6 @@ form.comment.hide .comment__wrap, div.comment-sent.hide .comment__wrap {
     display: flex;
     align-items: center;
     font-weight: 500;
-    margin-right: 15px;
     margin-bottom: 15px;
     height: 40px;
 }
@@ -383,7 +382,7 @@ article.lb-post:after {
 .lb-post-date,
 .lb-post-date__fulldate {
     font-weight: 500;
-    font-size: .85em;
+    font-size: .9em;
     color: #ACACAC;
 }
 
@@ -391,7 +390,7 @@ article.lb-post:after {
     float: left;
     padding-right: 20px;
     margin: -10px 0 12px 60px;
-    font-size: .95em;
+    font-size: .9em;
     color: #ACACAC;
 }
 
@@ -444,7 +443,7 @@ article.lb-post:after {
 }
 
 .lb-item {
-    font-size: 1.3em;
+    font-size: 1em;
     line-height: 1.4em;
     margin-left: 60px;
     clear: both;
@@ -582,7 +581,7 @@ article.lb-post:after {
   border-radius: 50%;
   overflow: hidden;
   background: #B9B9B9 url("../images/avatar_64.png") no-repeat;
-  background-size: 45px 45px;
+  background-size: cover;
   border: 1px solid #f4f4f4;
   float: left;
   margin-left: 20px;
@@ -594,7 +593,7 @@ article.lb-post:after {
 .lb-author__date {
   float: left;
   font-weight: 500;
-  font-size: .95em;
+  font-size: .9em;
   height: 22px;
 }
 
@@ -774,6 +773,38 @@ article.lb-post:after {
   background: none;
 }
 
+/* Freetypes */
+
+/* Scorecard */
+
+body .scorecard-top {
+  background-color: #f2f5f8;
+  padding: 30px;
+}
+
+body .scorecard-top span.team-score {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+body .scorecard-top span.team-name {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+body .scorecard-top .scorecard-top__scorers {
+  font-size: 16px;
+  line-height: 125%;
+}
+
+body .scorecard-top .scorecard-top__scorers li {
+  margin-bottom: 10px;
+}
+
+body .scorecard-top__info {
+  font-size: 14px;
+}
+
 
 /* adapt embed card to small screens
  * Remove the two cols layout
@@ -797,7 +828,6 @@ article.lb-post:after {
     .show-author-avatar .lb-author {
         margin-left: 50px;
         margin-top: -15px;
-        margin-top: 0px;
     }
     .show-author-avatar .lb-item {
         margin-left: 0;
