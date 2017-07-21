@@ -160,6 +160,20 @@
             "type": "text",
             "default": "",
             "help": "Please type in your google analytics code"
+        },
+        {
+            "name": "renderForESI",
+            "label": "Render embed for ESI",
+            "type": "checkbox",
+            "default": false,
+            "help": "Active this switch will strip the embed head and body markup for Edge Sites Includes"
+        },
+        {
+            "name": "removeStylesESI",
+            "label": "Remove styles from embed ESI",
+            "type": "checkbox",
+            "default": false,
+            "help": "Active this switch will remove the link markup for Edge Sites Includes"
         }
     ],
     "l10n": {
