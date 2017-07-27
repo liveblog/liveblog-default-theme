@@ -192,17 +192,17 @@ gulp.task('less', ['clean-css'], () => gulp.src(inputPath + 'less/liveblog.less'
   .pipe(gulp.dest(''))
 );
 
-gulp.task('extend-less', [], () => {
+gulp.task('extend-less', ['less'], () => {
   var manifest = require("./dist/rev-manifest.json");
 
-  gulp.src('./less/*.less')
+  gulp.src([`./dist/${manifest['liveblog.css']}`, './less/*.less'])
     .pipe(plugins.less({
       paths: [path.join(__dirname, 'less', 'includes')]
     }))
 
     .pipe(plugins.if(!DEBUG, plugins.minifyCss({compatibility: 'ie8'})))
     .pipe(plugins.rev())
-    .pipe(plugins.concat(manifest[paths.css]))
+    .pipe(plugins.concat(manifest['liveblog.css']))
     .pipe(gulp.dest('./dist'));
     //.pipe(plugins.rev.manifest('dist/rev-manifest.json', {merge: true}))
     //.pipe(gulp.dest(''))
@@ -269,9 +269,9 @@ gulp.task('theme-replace', ['browserify', 'less'], () => {
   var manifest = require("./dist/rev-manifest.json");
   var base = './';
 
-  console.log(manifest, paths);
+  console.log(manifest, paths)
   gulp.src('theme.json', {base: base})
-    .pipe(plugins.replace(/liveblog-.*\.css/g, manifest[paths.cssfile]))
+    .pipe(plugins.replace(/liveblog-.*\.css/g, manifest[paths.cssfile] || manifest['liveblog.css']))
     .pipe(plugins.replace(/liveblog-.*\.js/g, manifest[paths.jsfile]))
     .pipe(gulp.dest(base));
 
