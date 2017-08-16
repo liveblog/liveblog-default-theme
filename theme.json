@@ -67,6 +67,23 @@
             "help": "Otherwise they will pop up as new posts."
         },
         {
+            "name": "permalinkDelimiter",
+            "label": "Permalink delimiter",
+            "type": "select",
+            "options": [
+                {
+                    "value": "?",
+                    "label": "Query delimiter (?)"
+                },
+                {
+                    "value": "#",
+                    "label": " Fragment identifier delimiter (#)"
+                }
+            ],
+            "default": "?",
+            "help": "Sets the delimiter used to send the permalink. ex: permalinkHashMark=?, http://example.com/?..."
+        },
+        {
             "name": "canComment",
             "label": "Users can comment",
             "type": "checkbox",
