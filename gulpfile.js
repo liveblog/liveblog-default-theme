@@ -269,7 +269,6 @@ gulp.task('theme-replace', ['browserify', 'less'], () => {
   var manifest = require("./dist/rev-manifest.json");
   var base = './';
 
-  console.log(manifest, paths)
   gulp.src('theme.json', {base: base})
     .pipe(plugins.replace(/liveblog-.*\.css/g, manifest[paths.cssfile] || manifest['liveblog.css']))
     .pipe(plugins.replace(/liveblog-.*\.js/g, manifest[paths.jsfile]))
