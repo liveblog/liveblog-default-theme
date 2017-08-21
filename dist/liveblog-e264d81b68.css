@@ -1358,14 +1358,26 @@ article.slideshow div.items-container div.lb-item.portrait img {
   top: 0px;
   right: 40px;
 }
+#slideshow button.fullscreen img {
+  width: 24px;
+  height: 24px;
+}
 #slideshow button.close {
   top: 0;
   right: 0;
   z-index: 2;
 }
+#slideshow button.close img {
+  width: 24px;
+  height: 24px;
+}
 #slideshow button.arrows {
   top: 0;
   height: 100%;
+}
+#slideshow button.arrows img {
+  width: 24px;
+  height: 24px;
 }
 #slideshow button.arrows.prev {
   left: 0;
