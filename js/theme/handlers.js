@@ -41,27 +41,15 @@ var buttons = {
     },
 
     "[data-js-orderby_ascending]": () => {
-      viewmodel.loadPosts({sort: 'ascending'})
-        .then(view.renderTimeline)
-        .then(view.displayNewPosts)
-        .then(view.toggleSortBtn('ascending'))
-        .catch(catchError);
+      loadSort('ascending');
     },
 
     "[data-js-orderby_descending]": () => {
-      viewmodel.loadPosts({sort: 'descending'})
-        .then(view.renderTimeline)
-        .then(view.displayNewPosts)
-        .then(view.toggleSortBtn('descending'))
-        .catch(catchError);
+      loadSort('descending');
     },
 
     "[data-js-orderby_editorial]": () => {
-      viewmodel.loadPosts({sort: 'editorial'})
-        .then(view.renderTimeline)
-        .then(view.displayNewPosts)
-        .then(view.toggleSortBtn('editorial'))
-        .catch(catchError);
+      loadSort('editorial');
     },
 
     "[data-js-show-comment-dialog]": () => {
@@ -96,6 +84,28 @@ var buttons = {
   }
 };
 
+function loadSort(sortBy) {
+  // initialy on server sort params are set as newest_first, oldest_first
+  // on client we dont use this, so this is temp fix
+  switch (sortBy) {
+    case 'oldest_first':
+    case 'ascending':
+      sortBy = 'ascending';
+      break;
+    case 'newest_first':
+    case 'descending':
+      sortBy = 'descending';
+      break;
+    default:
+      sortBy = 'editorial';
+  }
+
+  return viewmodel.loadPosts({sort: sortBy})
+    .then(view.renderTimeline)
+    .then(view.displayNewPosts)
+    .then(view.toggleSortBtn(sortBy))
+    .catch(catchError);
+}
 function catchError(err) {
   console.error("Handler error: ", err);
 }
