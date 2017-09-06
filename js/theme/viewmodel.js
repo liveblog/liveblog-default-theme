@@ -102,6 +102,27 @@ vm.getPosts = function(opts) {
 };
 
 /**
+ * Private API request method
+ * @returns {object} Liveblog 3 API response
+ */
+vm.getAllPosts = function() {
+  var self = this;
+
+  var dbQuery = self.getQuery({});
+
+  var qs = "?source="
+    , fullPath = endpoint + qs + dbQuery;
+
+  return helpers.getJSON(fullPath)
+    .then((posts) => {
+      return posts;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+/**
  * Get next page of posts from API.
  * @param {object} opts - query builder options.
  * @returns {promise} resolves to posts array.
@@ -152,6 +173,7 @@ vm.updateViewModel = function(api_response, opts) {
   if (opts.sort) {
     self.settings.postOrder = opts.sort;
   }
+
   return api_response;
 };
 

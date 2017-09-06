@@ -81,6 +81,12 @@ var buttons = {
     });
 
     view.attachSlideshow();
+    if (view.attachPermalink()) {
+      loadSort(LB.settings.postOrder)
+        .then(checkForScroll);
+    } else {
+      checkForScroll();
+    }
   }
 };
 
@@ -106,6 +112,26 @@ function loadSort(sortBy) {
     .then(view.toggleSortBtn(sortBy))
     .catch(catchError);
 }
+
+function checkForScroll() {
+  viewmodel.getAllPosts()
+    .then(function(posts) {
+      if (view.checkPermalink(posts)) {
+        loadForScroll();
+      }
+    });
+}
+
+function loadForScroll() {
+  if (!view.permalinkScroll()) {
+    viewmodel.loadPostsPage()
+      .then(view.renderPosts)
+      .then(view.displayNewPosts)
+      .then(loadForScroll)
+      .catch(catchError);
+  }
+}
+
 function catchError(err) {
   console.error("Handler error: ", err);
 }
