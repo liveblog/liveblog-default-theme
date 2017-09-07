@@ -1,7 +1,7 @@
 <div class="{% if not item.sticky or settings.stickyPosition == 'bottom' %}lb-item{% endif %} commentItem">
     <article>{{ item.groups[1].refs[0].item.text | safe }}</article>
 </div>
-{% if item.groups[1].refs.length > 1 %}
+{% if item.groups[1].refs|length > 1 %}
 <div class="items-containerIndent">
 {% set secondary = item.groups[1].refs[1].item %}
   <!-- author plus avatar -->
