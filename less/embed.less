@@ -788,6 +788,7 @@ div.lb-author__avatar {
   text-align: right;
   margin-top: 10px;
   margin-bottom: -20px;
+  height: 24px;
   visibility: visible;
 }
 
@@ -811,18 +812,25 @@ div.lb-author__avatar {
 
 }
 
-.lb-post-share:hover .lb-post-shareBox {
+.lb-post:hover .lb-post-share:hover .lb-post-shareBox {
   width: 180px;
+  padding-right: 10px;
+  transition-delay: 0s; /* react immediately on hover */
 }
 
 .lb-post-shareBox {
   position: absolute;
+  color: #888;
   top: -3px;
-  right: 60px;
+  right: 40px;
   width: 0px;
   height: 24px;
   overflow: hidden;
+}
+
+.lb-post:hover .lb-post-shareBox {
   transition: width 0.1s;
+  transition: 0.1s 0.8s; /* delay of 1 seconds on hover off */
 }
 
 .lb-post-shareBox__item {
@@ -1184,6 +1192,10 @@ body .scorecard-top__info {
     .show-author-avatar .lb-author {
       height: 18px;
       margin-top: -10px;
+    }
+
+    .lb-post-shareBox {
+      line-height: 1.6em;
     }
 
 }
