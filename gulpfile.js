@@ -198,7 +198,7 @@ gulp.task('less', ['clean-css'], () => {
     .pipe(plugins.rev())
     .pipe(gulp.dest('./dist'))
     .pipe(plugins.rev.manifest('dist/rev-manifest.json', {merge: true}))
-    .pipe(gulp.dest('.'))
+    .pipe(gulp.dest('.'));
 });
 
 
@@ -261,11 +261,11 @@ gulp.task('template-inject', ['less', 'browserify'], () => {
 gulp.task('theme-replace', ['browserify', 'less'], () => {
   var manifest = require(path.resolve(cwd, "./dist/rev-manifest.json"));
   var base = './',
-      cssName =  new RegExp(`${theme.name}-.*\.css`, 'g'),
-      jsName =  new RegExp(`${theme.name}-.*\.js`, 'g');
+    cssName = new RegExp(`${theme.name}-.*\.css`, 'g'),
+    jsName = new RegExp(`${theme.name}-.*\.js`, 'g');
   gulp.src('theme.json', {base: base})
     .pipe(plugins.replace(cssName, manifest[paths.cssfile] || manifest[`${theme.name}.css`]))
-    .pipe(plugins.replace(jsName, manifest[paths.jsfile] ||  manifest[`${theme.name}.js`]))
+    .pipe(plugins.replace(jsName, manifest[paths.jsfile] || manifest[`${theme.name}.js`]))
     .pipe(plugins.replace(/"version":\s*"(\d+\.\d+\.)(\d+)"/,(a, p, r) => `"version": "${p}${++r}"`))
     .pipe(gulp.dest(base));
 
