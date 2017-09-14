@@ -337,9 +337,7 @@ figure figcaption {
 }
 .header-bar__comment {
   position: relative;
-  display: inline-block;
   color: #999999;
-  float: right;
   margin-right: 30px;
   padding: 0px 0px 8px 0px;
   border: none;
@@ -534,6 +532,7 @@ div.comment-sent.hide .comment__wrap {
 .header-bar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-weight: 500;
   margin-bottom: 15px;
   height: 40px;
