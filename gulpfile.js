@@ -266,6 +266,7 @@ gulp.task('theme-replace', ['browserify', 'less'], () => {
   gulp.src('theme.json', {base: base})
     .pipe(plugins.replace(cssName, manifest[paths.cssfile] || manifest[`${theme.name}.css`]))
     .pipe(plugins.replace(jsName, manifest[paths.jsfile] ||  manifest[`${theme.name}.js`]))
+    .pipe(plugins.replace(/"version":\s*"(\d+\.\d+\.)(\d+)"/,(a, p, r) => `"version": "${p}${++r}"`))
     .pipe(gulp.dest(base));
 
   // Reload theme options
