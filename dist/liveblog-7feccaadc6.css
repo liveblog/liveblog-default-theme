@@ -314,6 +314,9 @@ figure figcaption {
   padding-bottom: 200px;
   transition: opacity 0.35s ease-in-out;
 }
+.description {
+  margin: 0px 0px 20px 0px;
+}
 .lb-timeline__header {
   padding: 25px 10px 30px;
 }
