@@ -190,7 +190,7 @@
             "label": "Remove stylesheet from the Live Blog output for ESI",
             "type": "checkbox",
             "default": false,
-            "help": "Removes the link to the stylesheet from the Live Blog output to publish it AMP compatible using Edge Side Includes "
+            "help": "Removes the link to the stylesheet from the Live Blog output to publish it using Edge Side Includes "
         },
         {
             "name": "language",
