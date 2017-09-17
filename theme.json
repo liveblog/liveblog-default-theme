@@ -1,7 +1,7 @@
 {
     "label": "Liveblog 3 Default SEO Theme",
     "name": "default",
-    "version": "0.1.76",
+    "version": "0.1.77",
     "seoTheme": true,
     "author": "Sourcefabric <contact@sourcefabric.org>",
     "contributors": [
@@ -16,9 +16,9 @@
     },
     "license": "AGPL-3.0",
     "devStyles": ["dist/default-c1cf031256.css"],
-    "devScripts": ["dist/default-ae859541e5.js"],
+    "devScripts": ["dist/default-39b748062c.js"],
     "styles": ["dist/default-c1cf031256.css"],
-    "scripts": ["dist/default-ae859541e5.js"],
+    "scripts": ["dist/default-39b748062c.js"],
     "options": [
         {
             "name": "datetimeFormat",
@@ -235,6 +235,7 @@
     ],
     "i18n": {
         "cs": {
+          "Highlights": "Hlavní body",
           "Comment by": "Komentář",
           "Powered by": "Poháněno",
           "Advertisement": "reklama",
@@ -262,6 +263,7 @@
           "Updated": "Aktualizace",
           "Your comment was sent for approval": "Váš text byl úspěšně odeslán Čeká na schválení"
         }, "de": {
+          "Highlights": "Highlights",
           "Comment by": "Kommentar von",
           "Powered by": "Unterstützt von",
           "Advertisement": "Werbung",
@@ -291,6 +293,7 @@
           "Updated": "Aktualisiert am",
           "Your comment was sent for approval": "Ihr Kommentar wartet auf Freischaltung,"
         }, "fi": {
+          "Highlights": "Kohokohtia",
           "Comment by": "Comment by",
           "Powered by": "Powered by",
           "Advertisement": "Mainos",
@@ -320,6 +323,7 @@
           "Updated": "Päivitetty",
           "Your comment was sent for approval": "Kommenttisi lähetettiin hyväksyttäväksi"
         }, "fr": {
+          "Highlights": "Messages en surbrillance",
           "Comment by": "Commentaire de",
           "Powered by": "Alimenté par",
           "Advertisement": "Publicité",
@@ -349,6 +353,7 @@
           "Updated": "Mise à jour",
           "Your comment was sent for approval": "Votre commentaire a été envoyé et est en attente de validation"
         }, "nl": {
+          "Highlights": "Highlights",
           "Comment by": "Commentaar door",
           "Powered by": "Aangedreven door",
           "Advertisement": "Advertentie",
@@ -375,6 +380,7 @@
           "Sort by:": "Sorteer:",
           "Your comment was sent for approval": "Uw reactie is ontvangen ter beoordeling"
         }, "no": {
+          "Highlights": "Høydepunkter",
           "Comment by": "Kommentar av",
           "Powered by": "Drevet av",
           "Advertisement": "Annonse",
@@ -404,6 +410,7 @@
           "Updated": "Oppdatert",
           "Your comment was sent for approval": "Din kommentar er sendt til godkjenning"
         }, "ro": {
+          "Highlights": "Repere",
           "Comment by": "Comentariu de",
           "Powered by": "Cu sprijinul",
           "Advertisement": "Reclamă",
