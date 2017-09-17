@@ -65,6 +65,10 @@
         </button>
       {% endif %}
 
+      {% if settings.hasHighlights %}
+        <button class="header-bar__highlight" data-js-show-highlighted>Highlights</button>
+      {% endif %}
+
       {% if settings.showLiveblogLogo %}
         {% if output.logo_url %}
         <img src="{{ output.logo_url }}"/>

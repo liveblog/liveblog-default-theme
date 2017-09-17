@@ -1,7 +1,7 @@
 {
     "label": "Liveblog 3 Default SEO Theme",
     "name": "default",
-    "version": "0.1.69",
+    "version": "0.1.76",
     "seoTheme": true,
     "author": "Sourcefabric <contact@sourcefabric.org>",
     "contributors": [
@@ -32,11 +32,11 @@
             "label": "Number of posts per page",
             "type": "number",
             "default": 10,
-            "help": "Set the number of posts you want to see at the initialization"
+            "help": "Set the number of posts you initially want to show to your readers"
         },
         {
             "name": "postOrder",
-            "label": "Default posts order of the timeline",
+            "label": "Default posts order",
             "type": "select",
             "options": [
                 {"value": "editorial", "label": "Editorial"},
@@ -47,48 +47,24 @@
         },
         {
             "name": "autoApplyUpdates",
-            "label": "All updates including creates are auto-applied periodically.",
+            "label": "All updates are auto-applied periodically",
             "type": "checkbox",
             "default": true,
             "help": "Turn off to prompt user to load updates"
         },
         {
-            "name": "showLiveblogLogo",
-            "label": "Show Liveblog logo.",
-            "type": "checkbox",
-            "default": true,
-            "help": "Show the liveblog logo"
-        },
-        {
             "name": "autoApplyEdits",
-            "label": "Edits, deletes are applied without prompt",
+            "label": "Edits and deletes are applied without prompt",
             "type": "checkbox",
             "default": false,
-            "help": "Otherwise they will pop up as new posts."
-        },
-        {
-            "name": "permalinkDelimiter",
-            "label": "Permalink delimiter",
-            "type": "select",
-            "options": [
-                {
-                    "value": "?",
-                    "label": "Query delimiter (?)"
-                },
-                {
-                    "value": "#",
-                    "label": " Fragment identifier delimiter (#)"
-                }
-            ],
-            "default": "?",
-            "help": "Sets the delimiter used to send the permalink. ex: permalinkHashMark=?, http://example.com/?..."
+            "help": "Turn off to prompt user to load new posts"
         },
         {
             "name": "canComment",
             "label": "Users can comment",
             "type": "checkbox",
             "default": false,
-            "help": "If the users can comment on the blog"
+            "help": "Enables a commenting form for users"
         },
         {
             "name": "showImage",
@@ -109,21 +85,18 @@
             "default": false
         },
         {
+            "name": "showLiveblogLogo",
+            "label": "Show Liveblog logo",
+            "type": "checkbox",
+            "default": true,
+            "help": "Turn off to hide the “powered by Live Blog” logo"
+        },
+        {
             "name": "showAuthor",
-            "label": "Show author",
+            "label": "Show the author",
             "type": "checkbox",
             "default": true,
             "help": "Show the author information on posts"
-        },
-        {
-            "name": "showAuthorAvatar",
-            "label": "Show author avatar",
-            "type": "checkbox",
-            "default": true,
-            "dependsOn": {
-                "showAuthor": true
-            },
-            "help": "Show the author avatar on posts"
         },
         {
             "name": "authorNameFormat",
@@ -138,28 +111,55 @@
                 {"value": "byline", "label": "Byline"},
                 {"value": "sign_off", "label": "Sign off"}
             ],
-            "help": "How to show the author name"
+            "help": "How to show the author info"
+        },
+        {
+            "name": "showAuthorAvatar",
+            "label": "Show author avatar",
+            "type": "checkbox",
+            "default": true,
+            "dependsOn": {
+                "showAuthor": true
+            },
+            "help": "Shows an author image besides the author name"
         },
         {
             "name": "hasHighlights",
-            "label": "Has highlights",
+            "label": "Show highlight button",
             "type": "checkbox",
             "default": false,
-            "help": "If the users see the highlight button in embed"
+            "help": "Introduces a button for the readers to filter the timeline by highlights"
+        },
+        {
+            "name": "permalinkDelimiter",
+            "label": "Permalink delimiter",
+            "type": "select",
+            "options": [
+                {
+                    "value": "?",
+                    "label": "Query delimiter (?)"
+                },
+                {
+                    "value": "#",
+                    "label": " Fragment identifier delimiter (#)"
+                }
+            ],
+            "default": "?",
+            "help": "Sets the delimiter used to send the permalink. ex: permalinkHashMark=?, http://example.com/?..."
         },
         {
             "name": "blockSearchEngines",
             "label": "Block search engines",
             "type": "checkbox",
             "default": true,
-            "help": "Block search engines from indexing my blogs"
+            "help": "Will block search engines from indexing the blog content"
         },
         {
             "name": "showGallery",
             "label": "Show slideshow gallery",
             "type": "checkbox",
             "default": false,
-            "help": "If the users will see the slideshow gallery for multiple images posts"
+            "help": "Multiple image posts will show up as an image gallery"
         },
         {
             "name": "stickyPosition",
@@ -174,23 +174,23 @@
         {
             "name": "gaCode",
             "label": "Google analytics code",
-            "type": "text",
+            "type": "textarea",
             "default": "",
-            "help": "Please type in your google analytics code"
+            "help": "Please paste in your google analytics code"
         },
         {
             "name": "renderForESI",
-            "label": "Render embed for ESI",
+            "label": "Optimise the Live Blog output for ESI",
             "type": "checkbox",
             "default": false,
-            "help": "Active this switch will strip the embed head and body markup for Edge Sites Includes"
+            "help": "Strips the head and body tags from the Live Blog output to publish it using Edge Side Includes"
         },
         {
             "name": "removeStylesESI",
-            "label": "Remove styles from embed ESI",
+            "label": "Remove stylesheet from the Live Blog output for ESI",
             "type": "checkbox",
             "default": false,
-            "help": "Active this switch will remove the link markup for Edge Sites Includes"
+            "help": "Removes the link to the stylesheet from the Live Blog output to publish it AMP compatible using Edge Side Includes "
         },
         {
             "name": "language",

@@ -109,28 +109,28 @@
       <div class="lb-post-shareBox">
         <a class="lb-post-shareBox__item"
           onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=570,height=400');return false;"
-          data-link-id={{item._id}}
-          href="//www.facebook.com/sharer.php?s=100&p[title]=&p[url]="><img src="{{ assets_root }}images/share_facebook.svg"/>
+          data-link-base="//www.facebook.com/sharer.php?s=100&p[title]=&p[url]="
+          data-link-id={{item._id}}><img src="{{ assets_root }}images/share_facebook.svg"/>
         </a>
         <a class="lb-post-shareBox__item"
           onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=570,height=400');return false;"
-          data-link-id={{item._id}}
-          href="//plus.google.com/share?url="><img src="{{ assets_root }}images/share_google.svg"/>
+          data-link-base="//plus.google.com/share?url="
+          data-link-id={{item._id}}><img src="{{ assets_root }}images/share_google.svg"/>
         </a>
         <a class="lb-post-shareBox__item"
           onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=570,height=400');return false;"
-          data-link-id={{item._id}}
-          href="//www.linkedin.com/shareArticle?mini=true&url="><img src="{{ assets_root }}images/share_linkedin.svg"/>
+          data-link-base="//www.linkedin.com/shareArticle?mini=true&url="
+          data-link-id={{item._id}}><img src="{{ assets_root }}images/share_linkedin.svg"/>
         </a>
         <a class="lb-post-shareBox__item"
           onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=570,height=400');return false;"
-          data-link-id={{item._id}}
-          href="//twitter.com/home?status="><img src="{{ assets_root }}images/share_twitter.svg"/>
+          data-link-base="//twitter.com/home?status="
+          data-link-id={{item._id}}><img src="{{ assets_root }}images/share_twitter.svg"/>
         </a>
         <a class="lb-post-shareBox__item"
           onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=1024,height=768');return false;"
-          data-link-id={{item._id}}
-          href="mailto:?to=&subject=Liveblog&body="><img src="{{ assets_root }}images/share_email.svg"/>
+          data-link-base="mailto:?to=&subject=Liveblog&body="
+          data-link-id={{item._id}}><img src="{{ assets_root }}images/share_email.svg"/>
         </a>
         <span> | </span>
       </div>
