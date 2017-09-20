@@ -88,7 +88,7 @@ vm.getPosts = function(opts) {
   });
 
   var page = opts.fromDate ? 1 : opts.page;
-  var qs = '?max_results=embedded={"syndication_in":1}' + settings.postsPerPage + '&page=' + page + '&source='
+  var qs = '?embedded={"syndication_in":1}&max_results=' + settings.postsPerPage + '&page=' + page + '&source='
     , fullPath = endpoint + qs + dbQuery;
 
   return helpers.getJSON(fullPath)
@@ -261,6 +261,7 @@ vm.getQuery = function(opts) {
       not: { term: {deleted: true} }
     });
   }
+
   if (opts.sort === "ascending") {
     query.sort[0]._updated.order = "asc";
   } else if (opts.sort === "editorial") {
