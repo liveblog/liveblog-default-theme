@@ -76,7 +76,7 @@ var buttons = {
       view.toggleCommentDialog();
     },
 
-    '[data-js-show-highlighted': () => {
+    '[data-js-show-highlighted]': () => {
       let highlightButton = document.querySelector('.header-bar__highlight');
 
       highlightButton.classList.toggle('header-bar__highlight--active');
@@ -129,7 +129,7 @@ function loadSort(sortBy) {
     sortBy = 'editorial';
   }
 
-  return viewmodel.loadPosts({sort: sortBy})
+  return viewmodel.loadPosts({sort: sortBy, notDeleted: true})
     .then(view.renderTimeline)
     .then(view.displayNewPosts)
     .then(view.toggleSortBtn(sortBy))

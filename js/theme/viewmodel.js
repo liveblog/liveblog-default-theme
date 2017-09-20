@@ -81,6 +81,7 @@ vm.getPosts = function(opts) {
   var dbQuery = self.getQuery({
     sort: opts.sort || self.settings.postOrder,
     highlightsOnly: false || self.settings.onlyHighlighted,
+    notDeleted: opts.notDeleted,
     fromDate: opts.fromDate
       ? opts.fromDate
       : false
@@ -123,6 +124,7 @@ vm.getAllPosts = function() {
  */
 vm.loadPostsPage = function(opts) {
   opts = opts || {};
+  opts.notDeleted = true;
   opts.page = ++this.vm.currentPage;
   opts.sort = this.settings.postOrder;
   return this.getPosts(opts);
@@ -254,6 +256,11 @@ vm.getQuery = function(opts) {
     });
   }
 
+  if (opts.notDeleted === true) {
+    query.query.filtered.filter.and.push({
+      not: { term: {deleted: true} }
+    });
+  }
   if (opts.sort === "ascending") {
     query.sort[0]._updated.order = "asc";
   } else if (opts.sort === "editorial") {
