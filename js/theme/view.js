@@ -120,19 +120,19 @@ function addPosts(posts, opts) {
 }
 
 function checkPending() {
-    let pending = document.querySelectorAll("[data-js-post-id].mod--displaynone"),
-        one = document.querySelectorAll('[data-one-new-update]')[0].classList,
-        updates = document.querySelectorAll('[data-new-updates]')[0].classList;
-    if (pending.length == 1) {
-        one.toggle('mod--displaynone', false);
-        updates.toggle('mod--displaynone', true);
-    } else if (pending.length > 1) {
-        one.toggle('mod--displaynone', true);
-        updates.toggle('mod--displaynone', false);
-    } else {
-        one.toggle('mod--displaynone', true);
-        updates.toggle('mod--displaynone', true);
-    }
+  let pending = document.querySelectorAll("[data-js-post-id].mod--displaynone"),
+    one = document.querySelectorAll('[data-one-new-update]')[0].classList,
+    updates = document.querySelectorAll('[data-new-updates]')[0].classList;
+  if (pending.length === 1) {
+    one.toggle('mod--displaynone', false);
+    updates.toggle('mod--displaynone', true);
+  } else if (pending.length > 1) {
+    one.toggle('mod--displaynone', true);
+    updates.toggle('mod--displaynone', false);
+  } else {
+    one.toggle('mod--displaynone', true);
+    updates.toggle('mod--displaynone', true);
+  }
 }
 /**
  * Delete post <article> DOM node by data attribute.

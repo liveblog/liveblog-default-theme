@@ -31,13 +31,14 @@ const sendComment = (e) => {
     .then(view.showSuccessCommentMsg)
     .catch(view.displayCommentFormErrors);
 };
+
 var showPendings = (e) => {
-    let pendings = document.querySelectorAll("[data-js-post-id].mod--displaynone");
-    pendings.forEach(function(pending){
-        pending.classList.toggle('mod--displaynone', false);
-    });
-    view.checkPending();
-}
+  let pendings = document.querySelectorAll("[data-js-post-id].mod--displaynone");
+  pendings.forEach((pending) => {
+    pending.classList.toggle('mod--displaynone', false);
+  });
+  view.checkPending();
+};
 
 var buttons = {
   handlers: {
