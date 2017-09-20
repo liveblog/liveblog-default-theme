@@ -31,6 +31,13 @@ const sendComment = (e) => {
     .then(view.showSuccessCommentMsg)
     .catch(view.displayCommentFormErrors);
 };
+var showPendings = (e) => {
+    let pendings = document.querySelectorAll("[data-js-post-id].mod--displaynone");
+    pendings.forEach(function(pending){
+        pending.classList.toggle('mod--displaynone', false);
+    });
+    view.checkPending();
+}
 
 var buttons = {
   handlers: {
@@ -78,7 +85,9 @@ var buttons = {
         .then(view.renderTimeline)
         .then(view.displayNewPosts)
         .catch(catchError);
-    }
+    },
+    '[data-one-new-update]': showPendings,
+    '[data-new-updates]': showPendings
   },
 
   attach: function() {
