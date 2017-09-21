@@ -852,9 +852,9 @@ article.lb-post:after {
 .load-more-posts {
   position: absolute;
   left: 50%;
-  margin-left: -55px;
+  margin-left: -85px;
   padding: 10px 14px;
-  width: 150px;
+  width: 170px;
   margin-top: 60px;
   font-weight: 400;
 }
