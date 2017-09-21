@@ -1465,8 +1465,9 @@ article.slideshow div.items-container div.lb-item.portrait img {
   margin-top: 25px;
 }
 .lb-author__avatar--comment {
-  background: #fff;
+  background: transparent;
   border-color: transparent;
+  border-radius: 0px;
 }
 .lb-author--indent {
   float: none;
