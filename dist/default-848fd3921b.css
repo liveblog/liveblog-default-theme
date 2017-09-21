@@ -786,7 +786,8 @@ article.lb-post:after {
   background-color: #A0A0A0;
   margin-top: 4px;
 }
-.sticky + .lb-posts.list-group {
+.sticky + .lb-posts.list-group,
+.sticky + .lb-post + .lb-posts.list-group {
   background-size: 0px;
 }
 .sticky .lb-post--highlighted {
@@ -1265,7 +1266,6 @@ body .scorecard-top__info {
   .header-bar {
     margin: 10px 0 0 0px;
   }
-  .header-bar__highlights,
   .sorting-bar__order {
     padding-bottom: 3px;
   }
