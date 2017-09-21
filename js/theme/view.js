@@ -225,10 +225,11 @@ function toggleSortBtn(name) {
  */
 function toggleSortDropdown(open) {
   if (open !== undefined) {
-    console.log(open);
-    document.querySelector('.sorting-bar__dropdownContent').classList.toggle('sorting-bar__dropdownContent--active', open);
+    document.querySelector('.sorting-bar__dropdownContent')
+      .classList.toggle('sorting-bar__dropdownContent--active', open);
   } else {
-    document.querySelector('.sorting-bar__dropdownContent').classList.toggle('sorting-bar__dropdownContent--active');
+    document.querySelector('.sorting-bar__dropdownContent')
+      .classList.toggle('sorting-bar__dropdownContent--active');
   }
 }
 

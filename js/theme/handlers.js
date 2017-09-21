@@ -53,7 +53,7 @@ var buttons = {
       view.toggleSortDropdown();
     },
 
-     "[data-js-orderby_ascending]": () => {
+    "[data-js-orderby_ascending]": () => {
       loadSort('ascending');
     },
 
