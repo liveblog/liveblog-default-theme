@@ -352,6 +352,9 @@ figure figcaption {
   display: inline-block;
 }
 .header-bar__comment:after {
+  content: ' ';
+}
+.header-bar__comment--active:after {
   /*display: none;*/
   position: absolute;
   bottom: -25px;
