@@ -584,7 +584,7 @@ div.comment-sent.hide .comment__wrap {
 @media screen and (max-width: 680px) {
   .sorting-bar__dropdownBtn {
     display: block;
-    width: 110px;
+    width: 120px;
   }
   .sorting-bar__dropdownContent {
     display: none;
