@@ -340,7 +340,7 @@ figure figcaption {
 .header-bar__comment {
   position: relative;
   color: #999999;
-  margin-right: 30px;
+  margin-right: 10px;
   padding: 0px 0px 8px 0px;
   border: none;
   transition: color 0.1s ease-out;
