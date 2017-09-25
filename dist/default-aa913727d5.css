@@ -399,10 +399,11 @@ form.comment {
   margin: 5px;
   max-height: 500px;
 }
-form.comment.hide,
-div.comment-sent.hide {
+form.comment.hide {
   outline: 0px;
   max-height: 0px;
+}
+div.comment-sent.hide {
   display: none;
 }
 .comment__wrap {
@@ -433,6 +434,9 @@ div.comment-sent.hide .comment__wrap {
   -o-transition-timing-function: cubic-bezier(0.59, 0.005, 0, 1);
   transition-timing-function: cubic-bezier(0.59, 0.005, 0, 1);
   opacity: 0;
+}
+.comment-sent {
+  margin-top: 20px;
 }
 .comment__headline {
   font-size: 1.3em;

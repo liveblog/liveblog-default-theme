@@ -119,9 +119,12 @@ form.comment {
   max-height: 500px;
 }
 
-form.comment.hide, div.comment-sent.hide {
+form.comment.hide {
   outline: 0px;
   max-height: 0px;
+}
+
+div.comment-sent.hide {
   display: none;
 }
 
@@ -135,6 +138,10 @@ form.comment.hide, div.comment-sent.hide {
 form.comment.hide .comment__wrap, div.comment-sent.hide .comment__wrap {
   .animate_smooth(opacity, 0.2s);
   opacity: 0;
+}
+
+.comment-sent {
+    margin-top: 20px;
 }
 
 .comment__headline {
