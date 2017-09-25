@@ -664,6 +664,18 @@ div.comment-sent.hide .comment__wrap {
   padding: 60px 30px 50px 0px;
   margin: 0px 0px 0px 30px;
 }
+.new-updates {
+  background: #f2f5f8;
+  color: #56c491;
+  text-align: center;
+  padding: 15px 20px;
+  margin-top: 20px;
+  border: 1px solid #eff4f9;
+  cursor: pointer;
+}
+.new-updates:hover {
+  background: #eff3f7;
+}
 @-webkit-keyframes fadeIt {
   0% {
     background-color: #fff;
