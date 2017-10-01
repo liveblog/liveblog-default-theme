@@ -122,6 +122,7 @@ const paths = {
   cssfile: path.resolve(inputPath, 'liveblog.css'),
   templates: path.resolve(inputPath, 'templates/*.html')
 };
+const BUILD_HTML = './index.html';
 
 function getThemeSettings(options) {
   var _options = {};
@@ -245,9 +246,13 @@ gulp.task('index-inject', ['less', 'browserify'], () => {
     }, apiResponse.posts._items.length > 0 ? {} : nunjucksOptions));
 
     if (theme.ampTheme) {
-        indexTask.pipe(gulp.src('./less/liveblog.less')
+        let lessFiles = [],
+            themeLess = path.resolve(cwd, `./less/${theme.extends}.less`);
+        lessFiles.push(fs.existsSync(themeLess) ? themeLess : path.resolve(cwd,'./less/*.less'));
+
+        indexTask.pipe(gulp.src(lessFiles)
           .pipe(plugins.less({
-            paths: [path.join(__dirname, 'less', 'includes')]
+            paths: [path.resolve(inputPath, 'less')]
           }))
           .pipe(plugins.purify([BUILD_HTML]))
           .pipe(plugins.cleanCSS())
