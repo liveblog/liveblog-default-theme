@@ -245,30 +245,30 @@ gulp.task('index-inject', ['less', 'browserify'], () => {
       debug: DEBUG
     }, apiResponse.posts._items.length > 0 ? {} : nunjucksOptions));
 
-    if (theme.ampTheme) {
-        let lessFiles = [],
-            themeLess = path.resolve(cwd, `./less/${theme.extends}.less`);
-        lessFiles.push(fs.existsSync(themeLess) ? themeLess : path.resolve(cwd,'./less/*.less'));
+  if (theme.ampTheme) {
+    let lessFiles = [],
+      themeLess = path.resolve(cwd, `./less/${theme.extends}.less`);
+    lessFiles.push(fs.existsSync(themeLess) ? themeLess : path.resolve(cwd,'./less/*.less'));
 
-        indexTask.pipe(gulp.src(lessFiles)
-          .pipe(plugins.less({
-            paths: [path.resolve(inputPath, 'less')]
-          }))
-          .pipe(plugins.purify([BUILD_HTML]))
-          .pipe(plugins.cleanCSS())
-          .pipe(gulp.dest('./build/amp/'))
-          .pipe(plugins.inject(gulp.src(['./build/amp/*.css']), {
-            starttag: '<!-- inject:amp-styles -->',
-            transform: function(filepath, file) {
-              return file.contents.toString();
-            },
-            removeTags: true
-          }))
-        );
-    }
-    return indexTask.pipe(plugins.rename("index.html"))
-        .pipe(gulp.dest('.'))
-        .pipe(plugins.connect.reload());
+    indexTask.pipe(gulp.src(lessFiles)
+      .pipe(plugins.less({
+        paths: [path.resolve(inputPath, 'less')]
+      }))
+      .pipe(plugins.purify([BUILD_HTML]))
+      .pipe(plugins.cleanCSS())
+      .pipe(gulp.dest('./build/amp/'))
+      .pipe(plugins.inject(gulp.src(['./build/amp/*.css']), {
+        starttag: '<!-- inject:amp-styles -->',
+        transform: function(filepath, file) {
+          return file.contents.toString();
+        },
+        removeTags: true
+      }))
+    );
+  }
+  return indexTask.pipe(plugins.rename("index.html"))
+    .pipe(gulp.dest('.'))
+    .pipe(plugins.connect.reload());
 });
 
 /*
