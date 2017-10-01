@@ -161,7 +161,7 @@ let browserifyPreviousTasks = ['clean-js'];
 
 gulp.task('browserify', browserifyPreviousTasks, (cb) => {
   if (theme.ampTheme) {
-    return;
+    return gulp.src('.').pipe(plugins.util.noop());
   }
   var b = browserify({
     basedir: inputPath,
@@ -296,7 +296,10 @@ gulp.task('amp-validate', [], () => {
 gulp.task('template-inject', ['less', 'browserify'], () => {
   var themeSettings = getThemeSettings(theme.options);
 
-  return gulp.src('./templates/template.html')
+  let templates = [];
+  let timeline = `./templates/template-timeline.html`;
+  templates.push(fs.existsSync(timeline) ? timeline : path.resolve(inputPath,timeline));
+  return gulp.src(`./templates/template.html`)
     .pipe(plugins.nunjucks.compile({
       theme: theme,
       theme_json: JSON.stringify(theme, null, 4),
@@ -306,7 +309,7 @@ gulp.task('template-inject', ['less', 'browserify'], () => {
     }))
 
     // Add nunjucks/jinja2 template for server-side processing.
-    .pipe(plugins.inject(gulp.src([path.resolve(inputPath,'templates/template-timeline.html')]), {
+    .pipe(plugins.inject(gulp.src(templates), {
       starttag: '<!-- inject:template-content -->',
       transform: function(filepath, file) {
         return file.contents.toString();
