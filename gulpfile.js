@@ -204,7 +204,7 @@ gulp.task('less', ['clean-css'], () => {
   // Compile all the files under the less folder if no theme less file pressent.
   lessFiles.push(fs.existsSync(themeLess) ? themeLess : './less/*.less');
 
-  if ( !theme.onlyOwnCss ) {
+  if ( !theme.onlyOwnCss && theme.extends ) {
     let themeLess = path.resolve(inputPath,`./less/${theme.extends}.less`);
     lessFiles.push(fs.existsSync(themeLess) ? themeLess : path.resolve(inputPath,'./less/*.less'));
   }
