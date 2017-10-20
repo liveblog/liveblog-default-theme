@@ -24,6 +24,10 @@
     margin: 0px 0px 20px 0px;
   }
 
+  .timeline-top {
+      margin-top: 20px;
+  }
+
   .lb-timeline__header {
       padding: 25px 10px 30px;
   }
@@ -98,7 +102,7 @@
     margin-left: 10px;
   }
 
-  .header-bar__logo span {
+  a.header-bar__logo span {
     font-size: 0.63em;
     display: block;
     color: @grey;
@@ -108,8 +112,16 @@
     right: 25px;
   }
 
-  .header-bar__logo img {
+  a.header-bar__logo img {
     width: 100px;
+    margin-top: -10px;
+  }
+
+  // Logo for output channel
+
+  div.header-bar__logo img {
+    width: auto;
+    max-height: 40px;
     margin-top: -10px;
   }
 
@@ -1330,7 +1342,7 @@ body .scorecard-top__info {
         margin-left: 5px;
       }
 
-      .header-bar__logo span {
+      a.header-bar__logo span {
         display: none;
       }
 

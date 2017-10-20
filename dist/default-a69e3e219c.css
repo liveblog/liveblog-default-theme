@@ -324,6 +324,9 @@ html.lb-wrapHtml {
 .lb-timeline .description {
   margin: 0px 0px 20px 0px;
 }
+.lb-timeline .timeline-top {
+  margin-top: 20px;
+}
 .lb-timeline .lb-timeline__header {
   padding: 25px 10px 30px;
 }
@@ -379,7 +382,7 @@ html.lb-wrapHtml {
   text-decoration: none;
   margin-left: 10px;
 }
-.lb-timeline .header-bar__logo span {
+.lb-timeline a.header-bar__logo span {
   font-size: 0.63em;
   display: block;
   color: #ACACAC;
@@ -388,8 +391,13 @@ html.lb-wrapHtml {
   top: -20px;
   right: 25px;
 }
-.lb-timeline .header-bar__logo img {
+.lb-timeline a.header-bar__logo img {
   width: 100px;
+  margin-top: -10px;
+}
+.lb-timeline div.header-bar__logo img {
+  width: auto;
+  max-height: 40px;
   margin-top: -10px;
 }
 .lb-timeline form.comment {
@@ -1418,7 +1426,7 @@ body .scorecard-top__info {
     flex: 1 1 auto;
     margin-left: 5px;
   }
-  .lb-timeline .header-bar__logo span {
+  .lb-timeline a.header-bar__logo span {
     display: none;
   }
   .lb-timeline .comment__wrap {
