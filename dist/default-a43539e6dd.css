@@ -328,6 +328,27 @@ html.lb-wrapHtml {
 .lb-timeline .timeline-top {
   margin-top: 20px;
 }
+.lb-timeline .timeline-top .lb-sticky-top-post {
+  margin-bottom: 40px;
+}
+.lb-timeline .timeline-top .items-container {
+  margin-left: 0px !important;
+}
+.lb-timeline .timeline-top .lb-slideshow {
+  margin-left: 0px;
+}
+.lb-timeline .timeline-top .lb-item {
+  margin-left: 0px;
+}
+.lb-timeline .timeline-top .items-containerIndent {
+  margin-left: 30px;
+}
+.lb-timeline .timeline-top .items-containerIndent .lb-item {
+  margin-left: 30px;
+}
+.lb-timeline .timeline-top .lb-post-actions {
+  display: none;
+}
 .lb-timeline .lb-timeline__header {
   padding: 25px 10px 30px;
 }
