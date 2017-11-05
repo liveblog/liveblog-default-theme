@@ -117,7 +117,6 @@ var addtenFilter = function( dateString ) {
   var year = dateString.substring(0,4);
   var rest = dateString.substring(4);
   var newYear = parseInt(year) + 10;
-  gutil.log(newYear + rest);
   return newYear + rest;
 };
 nunjucksEnv.addFilter('addten', addtenFilter);
