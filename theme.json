@@ -17,9 +17,9 @@
     },
     "license": "AGPL-3.0",
     "devStyles": ["dist/default-e3d5243a9c.css"],
-    "devScripts": ["dist/default-76b3614d24.js"],
+    "devScripts": ["dist/default-38bb85e9fb.js"],
     "styles": ["dist/default-e3d5243a9c.css"],
-    "scripts": ["dist/default-76b3614d24.js"],
+    "scripts": ["dist/default-38bb85e9fb.js"],
     "options": [
         {
             "name": "datetimeFormat",
