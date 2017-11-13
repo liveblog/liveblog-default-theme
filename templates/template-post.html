@@ -38,7 +38,7 @@
       {% elif item.post_items_type == "advertisement" %}
         <div class="lb-advertisement">{{ translate('Advertisement') }}</div>
       {% endif %}
-  
+
       <!-- remove advertisement stylization-->
       {% if item.post_items_type != "advertisement" %}
   
@@ -59,7 +59,7 @@
         {% elif mainItem.original_creator %}
           {{ mainItem.original_creator.display_name }}
         {% endif %}
-        {% if item.syndication_in %}
+        {% if item.syndication_in and not settings.showSyndicatedAuthor %}
           <span class="lb-producer{% if settings.showSyndicatedAuthor %} lb-producer__author{% endif %}">{{ item.syndication_in.producer_blog_title }}</span>
         {% endif %}
         </div>
