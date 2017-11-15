@@ -29,6 +29,13 @@
             "help": "Sets the date time format to be used in the embed. Please enter a custom format in valid moment.js format http://momentjs.com/docs/#/parsing/string-format"
         },
         {
+            "name": "showUpdateDatetime",
+            "label": "Show post update time",
+            "type": "checkbox",
+            "default": false,
+            "help": "If activated, users will see an additional timestamp, when the post has been updated"
+        },
+        {
             "name": "postsPerPage",
             "label": "Number of posts per page",
             "type": "number",
