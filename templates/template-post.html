@@ -123,8 +123,8 @@
   {% endif %}
   </div>
   <!-- item end -->
-  {% if settings.showUpdateDatetime %}
-    {{ translate('Updated') }} <span class="lb-post-date" data-js-timestamp="{{item._updated}}">{{item._updated}}</span>
+  {% if settings.showUpdateDatetime and item.content_updated_date %}
+    {{ translate('Updated') }} <span class="lb-post-date" data-js-timestamp="{{item.content_updated_date}}">{{item.content_updated_date}}</span>
   {% endif %}
 
   <div class="lb-post-actions">
