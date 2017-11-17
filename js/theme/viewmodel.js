@@ -170,7 +170,7 @@ vm.updateViewModel = function(api_response, opts) {
     latestUpdate = self.getLatestUpdate(api_response);
   }
 
-  if (opts.sort !== self.settings.postOrder) {
+  if (opts.sort && opts.sort !== self.settings.postOrder) {
     self.vm = getEmptyVm();
     view.hideLoadMore(self.isTimelineEnd(api_response));
     Object.assign(self.vm, api_response);

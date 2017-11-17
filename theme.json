@@ -1,7 +1,7 @@
 {
     "label": "Liveblog 3 Default SEO Theme",
     "name": "default",
-    "version": "3.3.6",
+    "version": "3.3.7",
     "asyncTheme": true,
     "seoTheme": true,
     "author": "Sourcefabric <contact@sourcefabric.org>",
@@ -17,9 +17,9 @@
     },
     "license": "AGPL-3.0",
     "devStyles": ["dist/default-47e66a4bc9.css"],
-    "devScripts": ["dist/default-56d787f47e.js"],
+    "devScripts": ["dist/default-310b7db7e2.js"],
     "styles": ["dist/default-47e66a4bc9.css"],
-    "scripts": ["dist/default-56d787f47e.js"],
+    "scripts": ["dist/default-310b7db7e2.js"],
     "options": [
         {
             "name": "datetimeFormat",
