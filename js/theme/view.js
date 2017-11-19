@@ -82,8 +82,6 @@ function renderPosts(api_response) {
     return; // early
   }
 
-  renderedPosts.reverse();
-
   addPosts(renderedPosts, api_response.requestOpts.fromDate ? 'afterbegin' : 'beforeend');
 
   loadEmbeds();
