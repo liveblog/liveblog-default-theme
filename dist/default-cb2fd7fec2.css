@@ -1486,6 +1486,7 @@ iframe#liveblog-iframe {
   right: 0;
   background: rgba(0, 0, 0, 0.4);
   overflow: hidden;
+  z-index: 99999;
 }
 #lb-slideshow :focus {
   outline: none;
