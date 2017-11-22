@@ -317,7 +317,6 @@ html.lb-wrapHtml {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* text */
-  /* if there is an image, leave space on the left */
   /* loading */
   /* pinned posts */
   /* highlighted posts */
@@ -931,13 +930,6 @@ html.lb-wrapHtml {
   color: #333333;
   font-weight: 500;
   font-size: 13px;
-}
-.lb-timeline .item--embed__illustration {
-  position: absolute;
-  width: 200px;
-}
-.lb-timeline .item--embed__illustration ~ * {
-  margin-left: 220px;
 }
 .lb-timeline .item--embed__description,
 .lb-timeline .item--embed__credit {
