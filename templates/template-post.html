@@ -92,18 +92,10 @@
   {% if type == "comment" %}
     {% include "template-post-comment.html" %}
   {% else %}
-    {% if item and item.groups and
-            item.groups[1] and
-            item.groups[1].refs and
-            (item.groups[1].refs | length > 0) %}
+    {% if item and item.groups and item.groups[1] and item.groups[1].refs and (item.groups[1].refs | length > 0) %}
         {% for ref in item.groups[1].refs %}
           {% if ref.item.item_type == "image" %}
-            {% if settings.showGallery 
-              and loop.index0 + 1 < loop.length 
-              and item.groups[1].refs[loop.index0 + 1].item.item_type == "image" 
-              and (loop.index0 - 1 < 0 
-                or not (loop.index0 > 0 and item.groups[1].refs[loop.index0 - 1].item.item_type == "image")
-                ) %}
+            {% if settings.showGallery and loop.index0 + 1 < loop.length and item.groups[1].refs[loop.index0 + 1].item.item_type == "image" and (loop.index0 - 1 < 0 or not (loop.index0 > 0 and item.groups[1].refs[loop.index0 - 1].item.item_type == "image")) %}
               {% set galleryItem = true %}
               <!-- slideshow start -->
               <div class="lb-slideshow">
@@ -131,12 +123,7 @@
           {% endif %}
           </div>
           <!-- item end -->
-          {% if settings.showGallery 
-            and ref.item.item_type == "image" 
-            and loop.index0 - 1 >= 0 
-            and item.groups[1].refs[loop.index0 - 1].item.item_type == "image"
-            and item.groups[1].refs[loop.index0 + 1].item.item_type != "image"
-            %}
+          {% if settings.showGallery and ref.item.item_type == "image" and loop.index0 - 1 >= 0 and item.groups[1].refs[loop.index0 - 1].item.item_type == "image" and item.groups[1].refs[loop.index0 + 1].item.item_type != "image" %}
                 </div>
               </div>
               
