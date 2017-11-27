@@ -14,8 +14,7 @@ const defaultTemplates = {
   itemImage: require("../../templates/template-item-image.html"),
   itemEmbed: require("../../templates/template-item-embed.html"),
   itemQuote: require("../../templates/template-item-quote.html"),
-  itemComment: require("../../templates/template-item-comment.html"),
-  slideshow: require("../../templates/template-slideshow.html")
+  itemComment: require("../../templates/template-item-comment.html")
 };
 
 function getCustomTemplates() {
