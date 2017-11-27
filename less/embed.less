@@ -512,8 +512,6 @@
 
   .lb-post-date {
       padding-right: 20px;
-      font-size: .9em;
-      color: @grey;
   }
 
   .lb-post-date__fulldate {
@@ -644,8 +642,7 @@
     background-size: 20px;
   }
 
-
-  // Posts End
+   // Posts End
 
   // Load New Post
 
@@ -780,16 +777,6 @@ lb-producer__author:before {
 
   /* text */
 
-
-  .item--embed__illustration {
-      position: absolute;
-      width: 200px;
-  }
-
-  /* if there is an image, leave space on the left */
-  .item--embed__illustration ~ * {
-      margin-left: 220px;
-  }
   .item--embed__description,
   .item--embed__credit {
       padding-top: 5px;
@@ -823,10 +810,25 @@ lb-producer__author:before {
       opacity: 0;
   }
 
+  .lb-post-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 60px;
+  }
+
+  .lb-post-updated {
+    color: @grey;
+    font-size: .9em;
+    margin-top: 20px;
+    margin-bottom: -20px;
+  }
+
   .lb-post-actions {
     position: relative;
     text-align: right;
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-left: auto;
     margin-bottom: -20px;
     height: 24px;
     visibility: visible;
@@ -957,18 +959,28 @@ body .scorecard-top {
   padding: 30px;
 }
 
+body .scorecard-top hr {
+  display: none;
+}
+
 body .scorecard-top span.team-score {
-  font-size: 60px;
+  font-size: 45px;
   font-weight: bold;
+}
+
+body .scorecard-top__logoWrap img {
+  max-width: 160px;
 }
 
 body .scorecard-top span.team-name {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: bold;
+  line-height: 110%;
+  margin-bottom: 10px;
 }
 
 body .scorecard-top .scorecard-top__scorers {
-  font-size: 16px;
+  font-size: .9em;
   line-height: 125%;
 }
 
@@ -977,7 +989,8 @@ body .scorecard-top .scorecard-top__scorers li {
 }
 
 body .scorecard-top__info {
-  font-size: 14px;
+  font-size: .9em;
+  margin-top: 10px;
 }
 
 
@@ -1150,6 +1163,10 @@ body .scorecard-top__info {
 
       .lb-author__date {
           float: none;
+      }
+
+      .lb-post-bottom {
+        margin-left: 0px;
       }
 
       .sorting-bar {
@@ -1328,6 +1345,22 @@ body .scorecard-top__info {
       form.comment {
         padding: 20px;
         margin-top: 14px;
+      }
+
+      .lb-post-bottom {
+        flex-direction: column;
+        align-items: initial;
+        > *:last-child {
+          margin-bottom: -20px;
+        }
+      }
+
+      .lb-post-updated {
+        margin-bottom: -5px;
+      }
+
+      .lb-post-actions {
+
       }
 
       .lb-post-shareBox {

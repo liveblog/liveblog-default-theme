@@ -1,7 +1,7 @@
 {
     "label": "Liveblog 3 Default SEO Theme",
     "name": "default",
-    "version": "3.3.6",
+    "version": "3.3.13",
     "asyncTheme": true,
     "seoTheme": true,
     "author": "Sourcefabric <contact@sourcefabric.org>",
@@ -27,6 +27,13 @@
             "type": "datetimeformat",
             "default": "lll",
             "help": "Sets the date time format to be used in the embed. Please enter a custom format in valid moment.js format http://momentjs.com/docs/#/parsing/string-format"
+        },
+        {
+            "name": "showUpdateDatetime",
+            "label": "Show post update time",
+            "type": "checkbox",
+            "default": false,
+            "help": "If activated, users will see an additional timestamp, when the post has been updated"
         },
         {
             "name": "postsPerPage",

@@ -92,21 +92,20 @@ vm.getPosts = function(opts) {
 
   var dbQuery = self.getQuery({
     sort: opts.sort || self.settings.postOrder,
-    highlightsOnly: false || self.settings.onlyHighlighted,
+    highlightsOnly: self.settings.onlyHighlighted || false,
     notDeleted: opts.notDeleted,
-    fromDate: opts.fromDate
-      ? opts.fromDate
-      : false
+    fromDate: opts.fromDate ? opts.fromDate : false,
+    sticky: opts.sticky
   });
 
-  var page = opts.fromDate ? 1 : opts.page;
-  var qs = '?max_results=' + settings.postsPerPage + '&page=' + page + '&source='
+  var page = opts.fromDate? '' : `&page=${opts.page?opts.page:'1'}`;
+  var qs = '?max_results=' + settings.postsPerPage + page + '&source='
     , fullPath = endpoint + qs + dbQuery;
 
   return helpers.getJSON(fullPath)
     .then((posts) => {
-      self.updateViewModel(posts, opts);
       posts.requestOpts = opts;
+      self.updateViewModel(posts);
       return posts;
     })
     .catch((err) => {
@@ -157,10 +156,10 @@ vm.loadPosts = function(opts) {
  * Add items in api response & latest update timestamp to viewmodel.
  * @param {object} api_response - liveblog API response JSON.
  */
-vm.updateViewModel = function(api_response, opts) {
+vm.updateViewModel = function(api_response) {
   var self = this;
 
-  if (!opts.fromDate || opts.sort && opts.sort !== self.settings.postOrder) { // Means we're not polling
+  if (!api_response.requestOpts.fromDate) { // Means we're not polling
     view.hideLoadMore(self.isTimelineEnd(api_response)); // the end?
   } else { // Means we're polling for new posts
     if (!api_response._items.length) {
@@ -170,7 +169,7 @@ vm.updateViewModel = function(api_response, opts) {
     latestUpdate = self.getLatestUpdate(api_response);
   }
 
-  if (opts.sort !== self.settings.postOrder) {
+  if (api_response.requestOpts.sort && api_response.requestOpts.sort !== self.settings.postOrder) {
     self.vm = getEmptyVm();
     view.hideLoadMore(self.isTimelineEnd(api_response));
     Object.assign(self.vm, api_response);
@@ -178,8 +177,8 @@ vm.updateViewModel = function(api_response, opts) {
     self.vm._items.push.apply(self.vm._items, api_response._items);
   }
 
-  if (opts.sort) {
-    self.settings.postOrder = opts.sort;
+  if (api_response.requestOpts.sort) {
+    self.settings.postOrder = api_response.requestOpts.sort;
   }
 
   return api_response;
@@ -256,6 +255,9 @@ vm.getQuery = function(opts) {
     query.query.filtered.filter.and[2].range._updated = {
       "gt": opts.fromDate
     };
+    // @TODO: remove `post_status` aswell so we can have unpublish posts
+    // remove sticky posts from update polling request.
+    query.query.filtered.filter.and.splice(0,1);
   }
 
   if (opts.highlightsOnly === true) {
