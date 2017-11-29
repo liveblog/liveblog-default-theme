@@ -321,6 +321,20 @@ html.lb-wrapHtml {
   /* pinned posts */
   /* highlighted posts */
 }
+.lb-timeline .lb-responsive-video {
+  position: relative;
+  padding-bottom: 56.2%;
+  height: 0;
+  margin: 10px 0;
+  overflow: hidden;
+}
+.lb-timeline .lb-responsive-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 .lb-timeline .description {
   margin: 0px 0px 20px 0px;
 }
@@ -1084,14 +1098,14 @@ body .scorecard-top hr {
   display: none;
 }
 body .scorecard-top span.team-score {
-  font-size: 45px;
+  font-size: 42px;
   font-weight: bold;
 }
 body .scorecard-top__logoWrap img {
   max-width: 160px;
 }
 body .scorecard-top span.team-name {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
   line-height: 110%;
   margin-bottom: 10px;
@@ -1099,12 +1113,14 @@ body .scorecard-top span.team-name {
 body .scorecard-top .scorecard-top__scorers {
   font-size: .9em;
   line-height: 125%;
+  font-weight: normal;
 }
 body .scorecard-top .scorecard-top__scorers li {
   margin-bottom: 10px;
 }
 body .scorecard-top__info {
   font-size: .9em;
+  font-weight: normal;
   margin-top: 10px;
 }
 /* adapt embed card to small screens
