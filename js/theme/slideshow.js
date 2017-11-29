@@ -2,7 +2,7 @@ const lory = require('lory.js').lory;
 
 class Slideshow {
   init() {
-    Array.prototype.slice.call(document.querySelectorAll('.lb-slideshow')).forEach(function (element, index) {
+    Array.prototype.slice.call(document.querySelectorAll('.lb-slideshow')).forEach((element, index) => {
       lory(element, {
         classNameFrame: 'lb-slideshow_frame',
         classNameSlideContainer: 'lb-slideshow_slides',
