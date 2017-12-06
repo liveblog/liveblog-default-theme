@@ -624,12 +624,17 @@
   //}
 
   [class*="lb-type--embed"] {
+    background-image: url("../images/link-icon.svg");
+    background-size: 9px;
+  }
+
+  .lb-type--embed-twitter, .lb-type--embed-facebook, .lb-type--embed-youtube, .lb-type--embed-instagram {
     width: 40px;
     height: 40px;
     margin-left: -20px;
   }
 
-  [class*="lb-type--embed"] + .lb-post-date-icons {
+  .lb-type--embed-twitter + .lb-post-date-icons, .lb-type--embed-facebook + .lb-post-date-icons, .lb-type--embed-youtube + .lb-post-date-icons, .lb-type--embed-instagram + .lb-post-date-icons {
     margin-left: 40px;
   }
 
@@ -1167,10 +1172,13 @@ body .scorecard-top__info {
           margin-left: 0;
       }
 
+      [class*="lb-type--embed"] {
+        background-size: 8px;
+      }
+
       .lb-type--embed {
-          width: 16px;
-          height: 16px;
-          margin-top: -7px;
+          width: 12px;
+          height: 12px;
       }
 
       .lb-author__avatar, .lb-author__comment   {
