@@ -368,9 +368,9 @@
 
   .header-bar__highlight {
       position: relative;
-      text-indent: -9999px;
       color: #999999;
       width: 32px;
+      height: 32px;
       background-image: url("../images/highlighted.svg");
       background-repeat: no-repeat;
       background-size: 14px;
@@ -387,8 +387,27 @@
   }
 
   .header-bar__highlight.header-bar__highlight--active {
-      background-color: #f2f5f8;
-      border: 1px solid #cccccc;
+    background-color: #f2f5f8;
+    border: 1px solid #cccccc;
+  }
+
+  .header-bar__highlight span {
+    display: none;
+    font-size: 12px;
+    letter-spacing: 0.2px;
+    color: @white;
+    background-color: @black;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .header-bar__highlight:hover span {
+    display: block;
   }
 
   // Sorting Bar End
@@ -1033,11 +1052,15 @@ body .scorecard-top__info {
         .sorting-bar__order {
             margin-right: 15px;
         }
+        .header-bar__highlight:hover span {
+          display: none;
+        }
         .header-bar__comment {
           position: relative;
           text-indent: -9999px;
           color: #999999;
           width: 32px;
+          height: 32px;
           background-image: url(../images/comment_icon--dark.svg);
           background-repeat: no-repeat;
           background-size: 14px;
