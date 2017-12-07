@@ -16,10 +16,10 @@
         "url" : "git@github.com:liveblog/liveblog-default-theme"
     },
     "license": "AGPL-3.0",
-    "devStyles": ["dist/default-ed084ca5e4.css"],
-    "devScripts": ["dist/default-3e0edab293.js"],
-    "styles": ["dist/default-ed084ca5e4.css"],
-    "scripts": ["dist/default-3e0edab293.js"],
+    "devStyles": ["dist/default-2201581f66.css"],
+    "devScripts": ["dist/default-ac433fb3bd.js"],
+    "styles": ["dist/default-2201581f66.css"],
+    "scripts": ["dist/default-ac433fb3bd.js"],
     "options": [
         {
             "name": "datetimeFormat",
