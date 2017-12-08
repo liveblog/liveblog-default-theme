@@ -123,7 +123,7 @@
           {% endif %}
           </div>
           <!-- item end -->
-          {% if settings.showGallery and ref.item.item_type == "image" and loop.index0 - 1 >= 0 and item.groups[1].refs[loop.index0 - 1].item.item_type == "image" and item.groups[1].refs[loop.index0 + 1].item.item_type != "image" %}
+          {% if settings.showGallery and ref.item.item_type == "image" and loop.index0 - 1 >= 0 and item.groups[1].refs[loop.index0 - 1].item.item_type == "image" and item.groups[1].refs[loop.index0 + 1] and item.groups[1].refs[loop.index0 + 1].item.item_type != "image" %}
                 </div>
               </div>
               
