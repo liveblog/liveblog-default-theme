@@ -217,6 +217,7 @@ html.lb-wrapHtml {
 .lb-timeline article h5 {
   font-size: 1.06em;
   font-weight: bold;
+  margin-bottom: 0.7em;
 }
 .lb-timeline article h5 {
   font-size: 1em;
@@ -226,7 +227,7 @@ html.lb-wrapHtml {
   font-weight: bold;
 }
 .lb-timeline article p {
-  margin: 1em 0;
+  margin: 0.7em 0;
 }
 .lb-timeline article .liveblog--card {
   font-size: 0.9em;
@@ -320,6 +321,20 @@ html.lb-wrapHtml {
   /* loading */
   /* pinned posts */
   /* highlighted posts */
+}
+.lb-timeline .lb-responsive-video {
+  position: relative;
+  padding-bottom: 56.2%;
+  height: 0;
+  margin: 10px 0;
+  overflow: hidden;
+}
+.lb-timeline .lb-responsive-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 .lb-timeline .description {
   margin: 0px 0px 20px 0px;
@@ -424,7 +439,7 @@ html.lb-wrapHtml {
   right: 10px;
   padding: 30px;
   box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 2;
 }
 .lb-timeline form.comment.hide {
   display: none;
@@ -587,9 +602,9 @@ html.lb-wrapHtml {
 }
 .lb-timeline .header-bar__highlight {
   position: relative;
-  text-indent: -9999px;
   color: #999999;
   width: 32px;
+  height: 32px;
   background-image: url("../images/highlighted.svg");
   background-repeat: no-repeat;
   background-size: 14px;
@@ -606,6 +621,23 @@ html.lb-wrapHtml {
 .lb-timeline .header-bar__highlight.header-bar__highlight--active {
   background-color: #f2f5f8;
   border: 1px solid #cccccc;
+}
+.lb-timeline .header-bar__highlight span {
+  display: none;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  color: #ffffff;
+  background-color: #333333;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 10px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.lb-timeline .header-bar__highlight:hover span {
+  display: block;
 }
 .lb-timeline .lb-posts {
   clear: both;
@@ -800,11 +832,21 @@ html.lb-wrapHtml {
   margin-right: 10px;
 }
 .lb-timeline [class*="lb-type--embed"] {
+  background-image: url("../images/link-icon.svg");
+  background-size: 9px;
+}
+.lb-timeline .lb-type--embed-twitter,
+.lb-timeline .lb-type--embed-facebook,
+.lb-timeline .lb-type--embed-youtube,
+.lb-timeline .lb-type--embed-instagram {
   width: 40px;
   height: 40px;
   margin-left: -20px;
 }
-.lb-timeline [class*="lb-type--embed"] + .lb-post-date-icons {
+.lb-timeline .lb-type--embed-twitter + .lb-post-date-icons,
+.lb-timeline .lb-type--embed-facebook + .lb-post-date-icons,
+.lb-timeline .lb-type--embed-youtube + .lb-post-date-icons,
+.lb-timeline .lb-type--embed-instagram + .lb-post-date-icons {
   margin-left: 40px;
 }
 .lb-timeline .lb-type--embed-twitter {
@@ -1084,14 +1126,14 @@ body .scorecard-top hr {
   display: none;
 }
 body .scorecard-top span.team-score {
-  font-size: 45px;
+  font-size: 42px;
   font-weight: bold;
 }
 body .scorecard-top__logoWrap img {
   max-width: 160px;
 }
 body .scorecard-top span.team-name {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
   line-height: 110%;
   margin-bottom: 10px;
@@ -1099,12 +1141,14 @@ body .scorecard-top span.team-name {
 body .scorecard-top .scorecard-top__scorers {
   font-size: .9em;
   line-height: 125%;
+  font-weight: normal;
 }
 body .scorecard-top .scorecard-top__scorers li {
   margin-bottom: 10px;
 }
 body .scorecard-top__info {
   font-size: .9em;
+  font-weight: normal;
   margin-top: 10px;
 }
 /* adapt embed card to small screens
@@ -1119,11 +1163,15 @@ body .scorecard-top__info {
   .lb-timeline .sorting-bar__order {
     margin-right: 15px;
   }
+  .lb-timeline .header-bar__highlight:hover span {
+    display: none;
+  }
   .lb-timeline .header-bar__comment {
     position: relative;
     text-indent: -9999px;
     color: #999999;
     width: 32px;
+    height: 32px;
     background-image: url(../images/comment_icon--dark.svg);
     background-repeat: no-repeat;
     background-size: 14px;
@@ -1235,10 +1283,12 @@ body .scorecard-top__info {
     height: 12px;
     margin-left: 0;
   }
+  .lb-timeline [class*="lb-type--embed"] {
+    background-size: 8px;
+  }
   .lb-timeline .lb-type--embed {
-    width: 16px;
-    height: 16px;
-    margin-top: -7px;
+    width: 12px;
+    height: 12px;
   }
   .lb-timeline .lb-author__avatar,
   .lb-timeline .lb-author__comment {
