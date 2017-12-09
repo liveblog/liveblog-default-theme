@@ -269,7 +269,7 @@ gulp.task('index-inject', ['less', 'browserify'], () => {
     testdata.options.api_host = `${protocol}${apiHost}`;
     testdata.options.blog._id = blogId;
   }
-  var index = `${CWD}/templates/template-index.html`;
+  const index = './templates/template-index.html';
   var indexTask = gulp.src(fs.existsSync(index) ? index : path.resolve(inputPath,index))
     .pipe(plugins.inject(sources))
     .pipe(plugins.nunjucks.compile({
