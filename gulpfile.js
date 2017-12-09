@@ -243,7 +243,34 @@ const lessCommon = (cleanCss) => {
     .pipe(plugins.less({
       paths: [path.resolve(inputPath, 'less')]
     }))
-    .pipe(plugins.if(cleanCss, plugins.purifycss([BUILD_HTML])))
+    /* @TODO:
+     *  generate a full api support with
+     *      - pinned
+     *          - both need to be enable ( have support in the code for `stickyPosition`='both')
+     *          - with possition below menu bar
+     *          - with possition above menu bar
+     *      - highlight
+     *      - scorecards
+     *      - text
+     *      - image
+     *      - quote
+     *      - comments
+     *          - with bellow reply
+     *          - with on top reply
+     *      - advertisements
+     *          - local
+     *          - remote
+     *      - all supported emebds
+     *          - twitter
+     *          - facebook
+     *          - instagram
+     *          - youtube
+     *          - generic ( link )
+     * language settings if any.
+     * all posts above needs to be added and then enable purifycss.
+     * otherwise purifycss will remove those css "unused"/not present.
+    */
+    //.pipe(plugins.if(cleanCss, plugins.purifycss([BUILD_HTML])))
     .pipe(plugins.if(cleanCss, plugins.cleanCss({compatibility: 'ie8'})));
 };
 
@@ -284,7 +311,7 @@ gulp.task('index-inject', ['less', 'browserify'], () => {
   if (theme.ampTheme) {
 
     indexTask = indexTask.pipe(plugins.inject(
-      lessCommon(true),
+      lessCommon(false),
       {
         starttag: '<!-- inject:amp-styles -->',
         transform: function(filepath, file) {
