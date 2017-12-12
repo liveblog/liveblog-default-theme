@@ -416,9 +416,7 @@ gulp.task('watch-static', ['server'], () => {
   });
 });
 
-gulp.task('set-production', function() {
-  DEBUG = false;
-});
+gulp.task('set-production', () => {DEBUG = false;});
 
 // Clean CSS
 gulp.task('clean-css', () => del(['dist/*.css']));
