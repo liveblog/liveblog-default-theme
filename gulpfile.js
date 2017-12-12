@@ -14,7 +14,7 @@ const dateFilter = require('nunjucks-date-filter');
 const amphtmlValidator = require('amphtml-validator');
 
 const CWD = process.cwd();
-const DEBUG = plugins.util.env.NODE_ENV ? plugins.util.env.NODE_ENV : process.env.NODE_ENV !== "production";
+var DEBUG = plugins.util.env.NODE_ENV ? plugins.util.env.NODE_ENV : process.env.NODE_ENV !== "production";
 
 // Command-line and default theme options from theme.json.
 let theme = {};
@@ -416,13 +416,19 @@ gulp.task('watch-static', ['server'], () => {
   });
 });
 
+gulp.task('set-production', function() {
+  DEBUG = false;
+});
+
 // Clean CSS
 gulp.task('clean-css', () => del(['dist/*.css']));
 
 // Clean JS
 gulp.task('clean-js', () => del(['dist/*.js']));
 
-gulp.task('default', ['browserify', 'less', 'theme-replace', 'template-inject']);
+gulp.task('production', ['browserify', 'less', 'theme-replace', 'template-inject']);
+
+gulp.task('default', ['set-production', 'production']);
 
 // Default build for development
 gulp.task('devel', ['browserify', 'less', 'theme-replace', 'index-inject']);
