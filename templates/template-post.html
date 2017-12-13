@@ -60,6 +60,8 @@
           {{ mainItem.syndicated_creator.display_name }}
         {% elif item.original_creator %}
           {{ item.original_creator.display_name }}
+        {% elif item.publisher %}
+          {{ item.publisher.display_name }}
         {% endif %}
         {% if item.syndication_in and not settings.showSyndicatedAuthor %}
           <span class="lb-producer{% if settings.showSyndicatedAuthor %} lb-producer__author{% endif %}">{{ item.syndication_in.producer_blog_title }}</span>
@@ -73,6 +75,8 @@
           <img class="lb-author__avatar" src="{{ mainItem.syndicated_creator.picture_url }}" />
           {% elif item.original_creator and item.original_creator.picture_url %}
           <img class="lb-author__avatar" src="{{ item.original_creator.picture_url }}" />
+          {% elif item.publisher and item.publisher.picture_url %}
+          <img class="lb-author__avatar" src="{{ item.publisher.picture_url }}" />
           {% else %}
           <div class="lb-author__avatar"></div>
           {% endif %}
@@ -128,7 +132,8 @@
           {% endif %}
           </div>
           <!-- item end -->
-          {% if settings.showGallery and ref.item.item_type == "image" and loop.index0 - 1 >= 0 and item.groups[1].refs[loop.index0 - 1].item.item_type == "image" and item.groups[1].refs[loop.index0 + 1].item.item_type != "image" %}    </div>
+          {% if settings.showGallery and ref.item.item_type == "image" and loop.index0 - 1 >= 0 and item.groups[1].refs[loop.index0 - 1].item.item_type == "image" and item.groups[1].refs[loop.index0 + 1] and item.groups[1].refs[loop.index0 + 1].item.item_type != "image" %}
+            </div>
               <span class="lb-slideshow_prev">
                   <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 501.5 501.5"><g><path fill="#2E435A" d="M302.67 90.877l55.77 55.508L254.575 250.75 358.44 355.116l-55.77 55.506L143.56 250.75z"/></g></svg>
               </span>
