@@ -14,7 +14,7 @@ const dateFilter = require('nunjucks-date-filter');
 const amphtmlValidator = require('amphtml-validator');
 
 const CWD = process.cwd();
-const DEBUG = plugins.util.env.NODE_ENV ? plugins.util.env.NODE_ENV : process.env.NODE_ENV !== "production";
+var DEBUG = plugins.util.env.NODE_ENV ? plugins.util.env.NODE_ENV : process.env.NODE_ENV !== "production";
 
 // Command-line and default theme options from theme.json.
 let theme = {};
@@ -243,7 +243,34 @@ const lessCommon = (cleanCss) => {
     .pipe(plugins.less({
       paths: [path.resolve(inputPath, 'less')]
     }))
-    .pipe(plugins.if(cleanCss, plugins.purifycss([BUILD_HTML])))
+    /* @TODO:
+     *  generate a full api support with
+     *      - pinned
+     *          - both need to be enable ( have support in the code for `stickyPosition`='both')
+     *          - with possition below menu bar
+     *          - with possition above menu bar
+     *      - highlight
+     *      - scorecards
+     *      - text
+     *      - image
+     *      - quote
+     *      - comments
+     *          - with bellow reply
+     *          - with on top reply
+     *      - advertisements
+     *          - local
+     *          - remote
+     *      - all supported emebds
+     *          - twitter
+     *          - facebook
+     *          - instagram
+     *          - youtube
+     *          - generic ( link )
+     * language settings if any.
+     * all posts above needs to be added and then enable purifycss.
+     * otherwise purifycss will remove those css "unused"/not present.
+    */
+    //.pipe(plugins.if(cleanCss, plugins.purifycss([BUILD_HTML])))
     .pipe(plugins.if(cleanCss, plugins.cleanCss({compatibility: 'ie8'})));
 };
 
@@ -269,7 +296,7 @@ gulp.task('index-inject', ['less', 'browserify'], () => {
     testdata.options.api_host = `${protocol}${apiHost}`;
     testdata.options.blog._id = blogId;
   }
-  var index = `${CWD}/templates/template-index.html`;
+  const index = './templates/template-index.html';
   var indexTask = gulp.src(fs.existsSync(index) ? index : path.resolve(inputPath,index))
     .pipe(plugins.inject(sources))
     .pipe(plugins.nunjucks.compile({
@@ -284,7 +311,7 @@ gulp.task('index-inject', ['less', 'browserify'], () => {
   if (theme.ampTheme) {
 
     indexTask = indexTask.pipe(plugins.inject(
-      lessCommon(true),
+      lessCommon(false),
       {
         starttag: '<!-- inject:amp-styles -->',
         transform: function(filepath, file) {
@@ -389,13 +416,17 @@ gulp.task('watch-static', ['server'], () => {
   });
 });
 
+gulp.task('set-production', () => {DEBUG = false;});
+
 // Clean CSS
 gulp.task('clean-css', () => del(['dist/*.css']));
 
 // Clean JS
 gulp.task('clean-js', () => del(['dist/*.js']));
 
-gulp.task('default', ['browserify', 'less', 'theme-replace', 'template-inject']);
+gulp.task('production', ['browserify', 'less', 'theme-replace', 'template-inject']);
+
+gulp.task('default', ['set-production', 'production']);
 
 // Default build for development
 gulp.task('devel', ['browserify', 'less', 'theme-replace', 'index-inject']);
