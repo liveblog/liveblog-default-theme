@@ -27,6 +27,7 @@ const inputPath = theme.extends ?
   path.resolve(`${CWD}/node_modules/liveblog-${theme.extends}-theme/`) :
   path.resolve(`${CWD}/`);
 
+const options = require(path.resolve(inputPath,'./test/options.json'));
 
 let argvKey = 0;
 let apiHost = "";
@@ -94,7 +95,7 @@ if (match.length > 0) {
 
   query.query.filtered.filter.and[0].term.sticky = false;
 
-  request.get(`${postsEndpoint}?source=${JSON.stringify(query)}`, (response) => {
+  request.get(`${postsEndpoint}?max_results=${options.blog.theme_settings.postsPerPage}&source=${JSON.stringify(query)}`, (response) => {
     let body = '';
 
     response.on('data', (d) => {
