@@ -12,6 +12,7 @@ const path = require('path');
 const nunjucks = require('nunjucks');
 const dateFilter = require('nunjucks-date-filter');
 const amphtmlValidator = require('amphtml-validator');
+const karmaServer = require('karma').Server;
 
 const CWD = process.cwd();
 var DEBUG = plugins.util.env.NODE_ENV ? plugins.util.env.NODE_ENV : process.env.NODE_ENV !== "production";
@@ -58,7 +59,7 @@ if (argvKey !== 0) {
 }
 
 if (match.length > 0) {
-  [,protocol, apiHost,, blogId] = match;
+  [,protocol, apiHost, blogId] = match;
 
   const postsEndpoint = `${protocol}${apiHost}/api/client_blogs/${blogId}/posts`;
   const request = protocol === 'http://' ? http : https;
@@ -424,6 +425,15 @@ gulp.task('watch-static', ['server'], () => {
       console.error(e.toString());
     });
   });
+});
+
+//test
+gulp.task('test', () => {
+  new karmaServer({
+    configFile: path.resolve(inputPath, './karma.conf.js'),
+    singleRun: true,
+    autoWatch: false
+  }).start();
 });
 
 gulp.task('set-production', () => {DEBUG = false;});
