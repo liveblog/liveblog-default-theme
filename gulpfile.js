@@ -94,8 +94,9 @@ if (match.length > 0) {
   });
 
   query.query.filtered.filter.and[0].term.sticky = false;
+  const { postsPerPage } = options.blog.theme_settings;
 
-  request.get(`${postsEndpoint}?max_results=${options.blog.theme_settings.postsPerPage}&source=${JSON.stringify(query)}`, (response) => {
+  request.get(`${postsEndpoint}?max_results=${postsPerPage}&source=${JSON.stringify(query)}`, (response) => {
     let body = '';
 
     response.on('data', (d) => {
