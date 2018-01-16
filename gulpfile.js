@@ -253,6 +253,9 @@ const lessCommon = (cleanCss) => {
     .pipe(plugins.less({
       paths: [path.resolve(inputPath, 'less')]
     }))
+    .pipe(plugins.autoprefixer({
+      flexbox: 'no-2009'
+    }))
     /* @TODO:
      *  generate a full api support with
      *      - pinned
