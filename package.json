@@ -45,5 +45,9 @@
     "promise-polyfill": "^6.0.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:liveblog/liveblog-default-theme"
   }
 }
