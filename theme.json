@@ -1,7 +1,7 @@
 {
     "label": "Liveblog 3 Default SEO Theme",
     "name": "default",
-    "version": "3.3.31",
+    "version": "3.3.33",
     "asyncTheme": true,
     "seoTheme": true,
     "author": "Sourcefabric <contact@sourcefabric.org>",
@@ -16,9 +16,9 @@
         "url" : "git@github.com:liveblog/liveblog-default-theme"
     },
     "license": "AGPL-3.0",
-    "devStyles": ["dist/default-d369314e87.css"],
+    "devStyles": ["dist/default-5648d26af8.css"],
     "devScripts": ["dist/default-4a599ede5a.js"],
-    "styles": ["dist/default-d369314e87.css"],
+    "styles": ["dist/default-5648d26af8.css"],
     "scripts": ["dist/default-4a599ede5a.js"],
     "options": [
         {
@@ -283,7 +283,7 @@
           "Comment *": "Kommentar",
           "Comment should be maximum 300 characters in length": "Kommentar darf maximal 300 Zeichen lang sein",
           "Editorial": "Redaktionell",
-          "Load more posts": "Mehr Einträge laden",
+          "Load more posts": "Weitere Beiträge",
           "Loading": "Lade",
           "Name *": "Name",
           "Name should be maximum 30 characters in length": "Name darf maximal 30 Zeichen lang sein",
