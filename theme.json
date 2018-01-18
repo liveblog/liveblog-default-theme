@@ -1,7 +1,7 @@
 {
     "label": "Liveblog 3 Default SEO Theme",
     "name": "default",
-    "version": "3.3.30",
+    "version": "3.3.32",
     "asyncTheme": true,
     "seoTheme": true,
     "author": "Sourcefabric <contact@sourcefabric.org>",
@@ -17,9 +17,9 @@
     },
     "license": "AGPL-3.0",
     "devStyles": ["dist/default-8d6a2338a1.css"],
-    "devScripts": ["dist/default-5581feb259.js"],
+    "devScripts": ["dist/default-326077dcc6.js"],
     "styles": ["dist/default-8d6a2338a1.css"],
-    "scripts": ["dist/default-5581feb259.js"],
+    "scripts": ["dist/default-326077dcc6.js"],
     "options": [
         {
             "name": "datetimeFormat",
@@ -241,6 +241,13 @@
             "type": "checkbox",
             "default": false,
             "help": "If the users will see the syndicated author"
+        },
+        {
+            "name": "jsDateOnly",
+            "label": "Show date only on javasript",
+            "type": "checkbox",
+            "default": false,
+            "help": "If the users will see the date only when javascript loads"
         }
     ],
     "i18n": {
