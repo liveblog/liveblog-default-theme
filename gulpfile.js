@@ -27,6 +27,7 @@ const inputPath = theme.extends ?
   path.resolve(`${CWD}/node_modules/liveblog-${theme.extends}-theme/`) :
   path.resolve(`${CWD}/`);
 
+const options = require(path.resolve(inputPath,'./test/options.json'));
 
 let argvKey = 0;
 let apiHost = "";
@@ -93,8 +94,9 @@ if (match.length > 0) {
   });
 
   query.query.filtered.filter.and[0].term.sticky = false;
+  const { postsPerPage } = options.blog.theme_settings;
 
-  request.get(`${postsEndpoint}?source=${JSON.stringify(query)}`, (response) => {
+  request.get(`${postsEndpoint}?max_results=${postsPerPage}&source=${JSON.stringify(query)}`, (response) => {
     let body = '';
 
     response.on('data', (d) => {
@@ -254,6 +256,9 @@ const lessCommon = (cleanCss) => {
   return gulp.src(lessFiles)
     .pipe(plugins.less({
       paths: [path.resolve(inputPath, 'less')]
+    }))
+    .pipe(plugins.autoprefixer({
+      flexbox: 'no-2009'
     }))
     /* @TODO:
      *  generate a full api support with
