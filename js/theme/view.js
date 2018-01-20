@@ -4,8 +4,8 @@
 
 'use strict';
 
+require('./templates');
 const helpers = require('./helpers');
-const templates = require('./templates');
 const Slideshow = require('./slideshow');
 const Permalink = require('./permalink');
 const nunjucks = require("nunjucks/browser/nunjucks-slim");

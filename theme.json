@@ -1,7 +1,7 @@
 {
     "label": "Liveblog 3 Default SEO Theme",
     "name": "default",
-    "version": "3.3.34",
+    "version": "3.3.36",
     "asyncTheme": true,
     "seoTheme": true,
     "author": "Sourcefabric <contact@sourcefabric.org>",
@@ -17,9 +17,9 @@
     },
     "license": "AGPL-3.0",
     "devStyles": ["dist/default-5648d26af8.css"],
-    "devScripts": ["dist/default-1b2bf289b0.js"],
+    "devScripts": ["dist/default-a1cf70a9dc.js"],
     "styles": ["dist/default-5648d26af8.css"],
-    "scripts": ["dist/default-1b2bf289b0.js"],
+    "scripts": ["dist/default-a1cf70a9dc.js"],
     "options": [
         {
             "name": "datetimeFormat",
@@ -243,11 +243,21 @@
             "help": "If the users will see the syndicated author"
         },
         {
-            "name": "jsDateOnly",
-            "label": "Show date only on javasript",
-            "type": "checkbox",
-            "default": false,
-            "help": "If the users will see the date only when javascript loads"
+            "name": "datetimeRender",
+            "label": "Date and time is render on",
+            "type": "select",
+            "options": [
+                {
+                    "value": "server",
+                    "label": "Server Side"
+                },
+                {
+                    "value": "client",
+                    "label": "Client Side"
+                }
+            ],
+            "default": "client",
+            "help": "Where should be date and time rendered"
         }
     ],
     "i18n": {
