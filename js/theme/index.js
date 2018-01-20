@@ -22,11 +22,9 @@ module.exports = {
     localAnalytics.hit();
     pageview.init();
 
-    if (window.LB.settings.datetimeRender === 'client') {
-      view.updateTimestamps();
-      setInterval(() => {
-        view.updateTimestamps(); // Convert ISO dates to timeago
-      }, 1000);
-    }
+    view.updateTimestamps();
+    setInterval(() => {
+      view.updateTimestamps(); // Convert ISO dates to timeago
+    }, 1000);
   }
 };
