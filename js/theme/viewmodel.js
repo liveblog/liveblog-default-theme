@@ -249,7 +249,7 @@ vm.getQuery = function(opts) {
     },
     "sort": [
       {
-        "published_date": {order: 'desc', missing:'_last', unmapped_type: 'long'}
+        "published_date": {order: 'desc', missing: '_last', unmapped_type: 'long'}
       }
     ]
   };
