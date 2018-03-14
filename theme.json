@@ -2,7 +2,6 @@
     "label": "Liveblog 3 Default SEO Theme",
     "name": "default",
     "version": "3.3.53",
-    "version": "3.3.50",
     "asyncTheme": true,
     "seoTheme": true,
     "author": "Sourcefabric <contact@sourcefabric.org>",
